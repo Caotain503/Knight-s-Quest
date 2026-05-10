@@ -1,0 +1,82 @@
+[
+  {
+	"question": "Which phase of the SDLC focuses on gathering business requirements?",
+	"choices": [
+	  "System Design",
+	  "System Analysis",
+	  "System Implementation",
+      "System Maintenance"
+	],
+	"answer": "System Analysis"
+  },
+  {
+	"question": "Which UML diagram is used to model the sequential flow of interactions between objects?",
+	"choices": [
+	  "Class Diagram",
+	  "Sequence Diagram",
+	  "Use Case Diagram",
+      "Deployment Diagram"
+	],
+	"answer": "Sequence Diagram"
+  },
+  {
+	"question": "Which software development methodology emphasizes iterative progress and adaptability?",
+	"choices": [
+	  "Waterfall",
+	  "Agile",
+	  "V-Model",
+      "Spiral"
+	],
+	"answer": "Agile"
+  },
+  {
+	"question": "In an Entity-Relationship Diagram (ERD), what shape typically represents an entity?",
+	"choices": [
+	  "Oval",
+	  "Diamond",
+	  "Rectangle",
+      "Triangle"
+	],
+	"answer": "Rectangle"
+  },
+  {
+	"question": "What type of testing ensures that individual software components work correctly in isolation?",
+	"choices": [
+	  "Integration Testing",
+	  "System Testing",
+	  "Unit Testing",
+      "Acceptance Testing"
+	],
+	"answer": "Unit Testing"
+  },
+  {
+	"question": "In software design, which combination represents a best practice for system architecture?",
+	"choices": [
+	  "High coupling and high cohesion",
+	  "Low coupling and low cohesion",
+	  "High coupling and low cohesion",
+      "Low coupling and high cohesion"
+	],
+	"answer": "Low coupling and high cohesion"
+  },
+  {
+	"question": "What does 'API' stand for in system design?",
+	"choices": [
+	  "Application Programming Interface",
+	  "Advanced Process Integration",
+	  "Application Process Instruction",
+      "Automated Program Interface"
+	],
+	"answer": "Application Programming Interface"
+  },
+  {
+	"question": "Which document formally describes the software to be built, serving as an agreement between developers and clients?",
+	"choices": [
+	  "API Documentation",
+	  "Software Requirements Specification (SRS)",
+	  "Feasibility Study",
+      "Test Plan"
+	],
+	"answer": "Software Requirements Specification (SRS)"
+  }
+]

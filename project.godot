@@ -11,17 +11,14 @@ config_version=5
 [application]
 
 config/name="Knight's Quest"
+run/main_scene="uid://cecc2upbnmjsf"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*uid://btsvhwpajwgub"
+GameState="*uid://gxkai8hqooch"
 
 [physics]
 
 3d/physics_engine="Jolt Physics"
-
-[rendering]
-
-rendering_device/driver.windows="d3d12"
