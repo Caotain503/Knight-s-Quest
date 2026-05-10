@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://cwkiwip8147qk" path="res://resources/bird_soldier.tres" id="2_lpir7"]
 [ext_resource type="FontFile" uid="uid://cs76iin45dykj" path="res://assets/fonts/9 Bit RPG.ttf" id="4_a12nh"]
 [ext_resource type="Texture2D" uid="uid://do0ieog3g8tjm" path="res://assets/sprites/02.png" id="5_lpir7"]
+[ext_resource type="Texture2D" uid="uid://cqtnwqpc5y3yf" path="res://assets/sprites/01.png" id="6_player"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a12nh"]
 bg_color = Color(1, 0.21268043, 0.15969583, 1)
@@ -206,7 +207,8 @@ enemy = ExtResource("2_lpir7")
 
 [node name="Background" type="TextureRect" parent="." unique_id=995061981]
 layout_mode = 0
-offset_right = 1152.0
+offset_left = -2.0
+offset_right = 1150.0
 offset_bottom = 648.0
 texture = ExtResource("2_a12nh")
 
@@ -219,7 +221,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -142.0
 offset_top = -164.0
-offset_right = 142.00018
+offset_right = 142.00024
 offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -269,35 +271,40 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_6vh42")
 
-[node name="PlayerData" type="HBoxContainer" parent="PlayerPanel" unique_id=1334062753]
+[node name="TextLabel" type="RichTextLabel" parent="PlayerPanel" unique_id=954156108]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 142.0
+theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/bold_font_size = 27
+bbcode_enabled = true
+text = "Enemy dealt 10Hp damage."
+
+[node name="PlayerContainer" type="VBoxContainer" parent="." unique_id=2000000001]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.8933333
-offset_right = -880.0
-offset_bottom = -80.0
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 99.0
+offset_top = -171.0
+offset_right = 383.0
+offset_bottom = 151.0
 grow_vertical = 2
-alignment = 1
-metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="PlayerPanel/PlayerData" unique_id=1964847703]
+[node name="PlayerHealthBar" type="ProgressBar" parent="PlayerContainer" unique_id=2000000002]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "Health"
-
-[node name="ProgressBar" type="ProgressBar" parent="PlayerPanel/PlayerData" unique_id=1626694903]
-custom_minimum_size = Vector2(200, 20)
-layout_mode = 2
-size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("4_a12nh")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/background = SubResource("StyleBoxFlat_a12nh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lpir7")
-max_value = 50.0
-value = 25.0
+max_value = 35.0
+value = 35.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="PlayerPanel/PlayerData/ProgressBar" unique_id=1127824180]
+[node name="Label" type="Label" parent="PlayerContainer/PlayerHealthBar" unique_id=2000000003]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -308,34 +315,26 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 5
 theme_override_fonts/font = ExtResource("4_a12nh")
-theme_override_font_sizes/font_size = 18
-text = "90/100"
+theme_override_font_sizes/font_size = 27
+text = "HP: 35/35"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextLabel" type="RichTextLabel" parent="PlayerPanel" unique_id=954156108]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 46.0
-offset_right = 1144.0
-offset_bottom = 142.0
-theme_override_font_sizes/normal_font_size = 27
-theme_override_font_sizes/bold_font_size = 27
-bbcode_enabled = true
-text = "Enemy dealt 10Hp damage."
+[node name="Player" type="TextureRect" parent="PlayerContainer" unique_id=2000000004]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_player")
 
 [node name="ActionsPanel" type="Panel" parent="." unique_id=1846902563]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -264.0
-offset_top = -36.0
-offset_right = -16.0
-offset_bottom = 156.0
-grow_horizontal = 0
+offset_left = 372.0
+offset_top = -57.0
+offset_right = 602.655
+offset_bottom = 134.83002
 grow_vertical = 2
 theme = SubResource("Theme_a12nh")
 
@@ -346,23 +345,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 13
 alignment = 1
 
 [node name="AttackButton" type="Button" parent="ActionsPanel/VBoxContainer" unique_id=240559010]
 layout_mode = 2
+theme_override_font_sizes/font_size = 40
 text = "Attack"
 
 [node name="DefendButton" type="Button" parent="ActionsPanel/VBoxContainer" unique_id=1898593612]
 layout_mode = 2
-text = "Defends"
+theme_override_font_sizes/font_size = 40
+text = "Defend"
 
 [node name="ItemsButton" type="Button" parent="ActionsPanel/VBoxContainer" unique_id=1132654600]
 layout_mode = 2
+theme_override_font_sizes/font_size = 40
 text = "Items"
 
 [node name="RunButton" type="Button" parent="ActionsPanel/VBoxContainer" unique_id=332825280]
 layout_mode = 2
+theme_override_font_sizes/font_size = 40
 text = "Run"
 
 [node name="QuestionPopup" type="Panel" parent="." unique_id=1794828492]
