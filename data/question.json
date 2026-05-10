@@ -1,0 +1,36 @@
+{
+  "easy": [
+	{
+	  "question": "UML'de sınıflar hangi şekille gösterilir?",
+	  "options": ["Daire", "Dikdörtgen", "Üçgen", "Elips"],
+	  "correct": 1,
+	  "explanation": "UML sınıf diyagramlarında sınıflar üç bölümlü dikdörtgenlerle gösterilir."
+	}
+  ],
+  "medium": [
+	{
+	  "question": "Composition ile Aggregation arasındaki temel fark nedir?",
+	  "options": [
+		"Composition'da parça, bütün olmadan var olamaz",
+		"Aggregation'da parça, bütün olmadan var olamaz",
+		"İkisi aynı anlama gelir",
+        "Composition sadece arayüzlerde kullanılır"
+	  ],
+	  "correct": 0,
+	  "explanation": "Composition'da parçanın yaşam döngüsü bütüne bağlıdır — bütün yok olursa parça da yok olur."
+	}
+  ],
+  "hard": [
+	{
+	  "question": "Bir kütüphane sistemi tasarlıyorsunuz. Kitap ile Yazar arasındaki ilişki hangisidir?",
+	  "options": [
+		"Composition — yazar kitabın parçasıdır",
+		"Aggregation — kitap yazardan bağımsız var olabilir",
+		"Inheritance — kitap yazardan türer",
+        "Dependency — kitap yazara bağımlıdır"
+	  ],
+	  "correct": 1,
+	  "explanation": "Yazar silinse de kitap var olmaya devam eder, bu yüzden ilişki Aggregation'dır."
+	}
+  ]
+}

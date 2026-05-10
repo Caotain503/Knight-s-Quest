@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cecc2upbnmjsf"]
+
+[ext_resource type="Script" uid="uid://fabmpd125u7x" path="res://scripts/main_menu.gd" id="1_0ykhv"]
+[ext_resource type="Texture2D" uid="uid://dh8m64xnlw6er" path="res://assets/sprites/ui/logo.png" id="2_2wh52"]
+
+[node name="MainMenu" type="Control" unique_id=1342559538]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ykhv")
+
+[node name="Background" type="ColorRect" parent="." unique_id=877238178]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22290143, 0.21383336, 0.3403081, 1)
+
+[node name="StartButton" type="Button" parent="." unique_id=50343742]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 445.0
+offset_right = 739.0
+offset_bottom = 521.0
+text = "Start"
+
+[node name="Logo" type="TextureRect" parent="." unique_id=27111846]
+layout_mode = 0
+offset_left = 318.0
+offset_top = 44.0
+offset_right = 859.0
+offset_bottom = 340.0
+texture = ExtResource("2_2wh52")
+expand_mode = 1
