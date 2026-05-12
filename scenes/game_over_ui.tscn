@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://cotffuyehugk2"]
+
+[ext_resource type="Script" uid="uid://cybpddli58qrf" path="res://scripts/game_over_ui.gd" id="1_ovv0w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovv0w"]
+bg_color = Color(0.09923177, 0.09923177, 0.0992317, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6ord"]
+bg_color = Color(0.82606, 0.82606006, 0.82606, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.05109611, 0.05109612, 0.05109603, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk38d"]
+bg_color = Color(0.09923177, 0.09923177, 0.0992317, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbgkd"]
+bg_color = Color(0.09923177, 0.09923177, 0.0992317, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Animation" id="Animation_y6ord"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -500)]
+}
+
+[sub_resource type="Animation" id="Animation_ovv0w"]
+resource_name = "appear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -500), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lk38d"]
+resource_name = "disappear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 500)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y6ord"]
+_data = {
+&"RESET": SubResource("Animation_y6ord"),
+&"appear": SubResource("Animation_ovv0w"),
+&"disappear": SubResource("Animation_lk38d")
+}
+
+[node name="GameOverUI" type="Control" unique_id=2010137967]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -500.0
+offset_bottom = -500.00024
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ovv0w")
+death_messages = Array[String](["Game Over"])
+
+[node name="Label" type="Label" parent="." unique_id=948167226]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -161.0
+offset_top = -157.0
+offset_right = 161.0
+offset_bottom = -93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 32
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=307184045]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = 9.0
+offset_right = 96.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_pressed_color = Color(0.009317499, 0.009317501, 0.009317499, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ovv0w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y6ord")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lk38d")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nbgkd")
+text = "Try Again"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1988633859]
+libraries/ = SubResource("AnimationLibrary_y6ord")

@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://di3n3jikvjmit"]
+
+[ext_resource type="Script" uid="uid://ltmtqqoyyw6g" path="res://scripts/item_panel.gd" id="1_7gh1m"]
+
+[node name="ItemPanel" type="Panel" unique_id=110148329]
+custom_minimum_size = Vector2(300, 0)
+script = ExtResource("1_7gh1m")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=680247215]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=675172389]
+layout_mode = 2
+
+[node name="ItemLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=295816464]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 22
+text = "Health Potion"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PriceLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=657521039]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 36
+text = "500$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=995008578]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=100066568]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Buy"
