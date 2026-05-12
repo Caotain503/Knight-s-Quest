@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://ltd4nf3dcmxe"]
+
+[ext_resource type="Script" uid="uid://xty8ephhdxsg" path="res://scripts/shop_ui.gd" id="1_fs6yy"]
+[ext_resource type="Texture2D" uid="uid://d1cl3n868rn5f" path="res://assets/sprites/coin_icon.png" id="4_crtus"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b84dc"]
+bg_color = Color(0.87005675, 0.8024677, 0.9595656, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fs6yy"]
+bg_color = Color(0.05479335, 0.01589989, 0.09796629, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oixfk"]
+bg_color = Color(0.17959195, 0.14315206, 0.21190742, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.9933036, 0.9480049, 0.9999998, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_18xnp"]
+Button/colors/font_color = Color(0.17112127, 0.10699076, 0.1622931, 1)
+Button/colors/font_disabled_color = Color(0.17254902, 0.105882354, 0.16078432, 1)
+Button/colors/font_focus_color = Color(0.17254902, 0.105882354, 0.16078432, 1)
+Button/colors/font_hover_color = Color(0.17254902, 0.105882354, 0.16078432, 1)
+Button/colors/font_pressed_color = Color(0.84306085, 0.73368716, 0.82041174, 1)
+Button/font_sizes/font_size = 16
+Button/styles/disabled = SubResource("StyleBoxFlat_b84dc")
+Button/styles/focus = SubResource("StyleBoxFlat_b84dc")
+Button/styles/hover = SubResource("StyleBoxFlat_b84dc")
+Button/styles/normal = SubResource("StyleBoxFlat_b84dc")
+Button/styles/pressed = SubResource("StyleBoxFlat_fs6yy")
+HBoxContainer/constants/separation = 20
+Panel/styles/panel = SubResource("StyleBoxFlat_oixfk")
+
+[node name="ShopUI" type="Control" unique_id=290908397]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_18xnp")
+script = ExtResource("1_fs6yy")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1892559779]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.054095805, 0.054087646, 0.0888179, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=164788079]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 180
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 180
+
+[node name="ItemPanelContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1092857478]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=297086263]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -176.0
+offset_top = -72.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Next Battle"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1728065238]
+layout_mode = 1
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 360.0
+offset_bottom = 80.0
+theme_override_constants/separation = 4
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=865232065]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("4_crtus")
+expand_mode = 2
+
+[node name="CoinLabel" type="Label" parent="HBoxContainer" unique_id=1329468638]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "X 0"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

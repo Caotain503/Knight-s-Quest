@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BaseItem" format=3 uid="uid://c3sktqr3lmywx"]
+
+[ext_resource type="Script" uid="uid://b2nn0otjvfiql" path="res://resources/BaseItem.gd" id="1_mr6qb"]
+
+[resource]
+script = ExtResource("1_mr6qb")
+name = "Health Potion"
+price = 20
+metadata/_custom_type_script = "uid://b2nn0otjvfiql"
