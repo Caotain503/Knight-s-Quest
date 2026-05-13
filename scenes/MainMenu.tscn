@@ -3,6 +3,17 @@
 [ext_resource type="Script" uid="uid://fabmpd125u7x" path="res://scripts/main_menu.gd" id="1_0ykhv"]
 [ext_resource type="Texture2D" uid="uid://dh8m64xnlw6er" path="res://assets/sprites/ui/logo.png" id="2_2wh52"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ykhv"]
+bg_color = Color(0.15895265, 0.19607222, 0.33187363, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 17
+shadow_color = Color(0.051996194, 0.07941147, 0.18432575, 0.6)
+shadow_size = 13
+shadow_offset = Vector2(0, 3.285)
+
 [node name="MainMenu" type="Control" unique_id=1342559538]
 layout_mode = 3
 anchors_preset = 15
@@ -21,19 +32,126 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.22290143, 0.21383336, 0.3403081, 1)
 
-[node name="StartButton" type="Button" parent="." unique_id=50343742]
-layout_mode = 0
-offset_left = 440.0
-offset_top = 445.0
-offset_right = 739.0
-offset_bottom = 521.0
-text = "Start"
-
 [node name="Logo" type="TextureRect" parent="." unique_id=27111846]
 layout_mode = 0
-offset_left = 318.0
-offset_top = 44.0
-offset_right = 859.0
-offset_bottom = 340.0
+offset_left = 320.0
+offset_top = 24.0
+offset_right = 832.0
+offset_bottom = 296.0
 texture = ExtResource("2_2wh52")
 expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=295462847]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 320.0
+offset_right = 704.0
+offset_bottom = 576.0
+theme_override_constants/separation = 18
+
+[node name="StartButton" type="Button" parent="VBoxContainer" unique_id=50343742]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.63375676, 0.6337568, 0.63375676, 1)
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_0ykhv")
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer" unique_id=1556771009]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.63375676, 0.6337568, 0.63375676, 1)
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_0ykhv")
+text = "Options
+"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=1701540459]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.63375676, 0.6337568, 0.63375676, 1)
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_0ykhv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_0ykhv")
+text = "Exit
+"
+
+[node name="OptionsPanel" type="Panel" parent="." unique_id=1156664572]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -196.0
+offset_right = 320.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel" unique_id=282305113]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MusicLabel" type="Label" parent="OptionsPanel/VBoxContainer" unique_id=95406818]
+layout_mode = 2
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="OptionsPanel/VBoxContainer" unique_id=1203988330]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SFXLabel" type="Label" parent="OptionsPanel/VBoxContainer" unique_id=1432247691]
+layout_mode = 2
+text = "VFX"
+
+[node name="SFXSlider" type="HSlider" parent="OptionsPanel/VBoxContainer" unique_id=648862292]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="ResolutionLabel" type="Label" parent="OptionsPanel/VBoxContainer" unique_id=915764099]
+layout_mode = 2
+text = "Resolution"
+
+[node name="ResolutionOption" type="OptionButton" parent="OptionsPanel/VBoxContainer" unique_id=794943529]
+layout_mode = 2
+
+[node name="WindowModeLabel" type="Label" parent="OptionsPanel/VBoxContainer" unique_id=355579342]
+layout_mode = 2
+text = "Window Mode"
+
+[node name="WindowModeOption" type="OptionButton" parent="OptionsPanel/VBoxContainer" unique_id=144462130]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="OptionsPanel/VBoxContainer" unique_id=1242953645]
+layout_mode = 2
+text = "Close"
+
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_pressed"]
