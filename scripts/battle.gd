@@ -4,6 +4,7 @@ extends Control
 signal textlabel_closed
 signal question_answered(is_correct: bool)
 
+@export var enemy_pool: Array[BaseEnemy]
 @export var enemy: BaseEnemy:
 	set(value):
 		enemy = value
@@ -21,11 +22,15 @@ signal question_answered(is_correct: bool)
 @onready var question_popup: Panel = $QuestionPopup
 @onready var question_label: RichTextLabel = $QuestionPopup/MarginContainer/VBoxContainer/QuestionLabel
 @onready var choices_container: VBoxContainer = $QuestionPopup/MarginContainer/VBoxContainer/ChoicesContainer
+@onready var game_over_ui: GameOverUI = $GameOverUI
+@onready var shop_ui: ShopUI = $ShopUI
+@onready var enemy_container: VBoxContainer = $EnemyContainer
 
 var current_player_health: int = 0
 var current_enemy_health: int = 0
 var is_defending: bool = false
 var questions_pool: Array = []
+var is_scrolling: bool = false
 
 func _ready() -> void:
 	set_health($EnemyContainer/EnemyHealthBar, enemy.health, enemy.health)
@@ -34,7 +39,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	set_health($PlayerPanel/PlayerData/ProgressBar, GameState.current_health, GameState.max_health)
+	set_health($PlayerContainer/PlayerHealthBar, GameState.current_health, GameState.max_health)
 	
 	
 	current_player_health = GameState.current_health
@@ -43,10 +48,23 @@ func _ready() -> void:
 	var loaded_data = load_json("res://questions/easy.json")
 	questions_pool = loaded_data
 	
+	text_label.text = ""
 	text_label.hide()
 	actions_panel.hide()
 	question_popup.hide()
 	
+	display_text("A wild [b]%s[/b] appears" % enemy.name)
+	await self.textlabel_closed
+	actions_panel.show()
+
+func spawn_enemy() -> void:
+	enemy = enemy_pool.pick_random()
+	$EnemyContainer/EnemyHealthBar.value = enemy.health
+	$EnemyContainer/EnemyHealthBar.max_value = enemy.health
+	$EnemyContainer/Enemy.texture = enemy.texture
+	current_enemy_health = enemy.health
+	animations.play("enemy_appear")
+	await animations.animation_finished
 	display_text("A wild [b]%s[/b] appears" % enemy.name)
 	await self.textlabel_closed
 	actions_panel.show()
@@ -64,13 +82,18 @@ func _input(_event) -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	if (Input.is_action_just_pressed("ui_accept") or Input.is_mouse_button_pressed(MouseButton.MOUSE_BUTTON_LEFT)) and text_label.visible:
+	if (Input.is_action_just_pressed("ui_accept") or Input.is_mouse_button_pressed(MouseButton.MOUSE_BUTTON_LEFT)) and text_label.visible and not is_scrolling:
 		text_label.hide()
 		self.textlabel_closed.emit()
 
 func display_text(text) -> void:
 	text_label.show()
-	text_label.text = text
+	text_label.text = ""
+	is_scrolling = true
+	for letter in text:
+		text_label.text += letter
+		await get_tree().create_timer(15 / 1000.0).timeout
+	is_scrolling = false
 
 func enemy_turn() -> void:
 	display_text("%s launches at you fiercely!" % enemy.name)
@@ -85,10 +108,14 @@ func enemy_turn() -> void:
 		await textlabel_closed
 	else:
 		current_player_health = max(0, current_player_health - enemy.damage)
-		set_health($PlayerPanel/PlayerData/ProgressBar, current_player_health, GameState.max_health)
+		set_health($PlayerContainer/PlayerHealthBar, current_player_health, GameState.max_health)
 		
 		animations.play("camera_shake")
 		await animations.animation_finished
+		
+		if current_player_health == 0:
+			game_over_ui.appear()
+			return
 		
 		display_text("%s dealt %d damage!" % [enemy.name, enemy.damage])
 		await textlabel_closed
@@ -130,11 +157,20 @@ func _on_attack_button_pressed() -> void:
 	await textlabel_closed
 	
 	if current_enemy_health == 0:
-		display_text("%s was defeated!" % enemy.name)
+		GameState.coins += enemy.reward
+		display_text("%s was defeated. You earned %d coins!" % [enemy.name, enemy.reward])
 		await textlabel_closed
 		
 		animations.play("enemy_death")
 		await animations.animation_finished
+		
+		shop_ui.reroll_shop()
+		shop_ui.show()
+		
+		await shop_ui.shop_closed
+		
+		spawn_enemy()
+		
 		return
 	
 	enemy_turn()
@@ -194,3 +230,11 @@ func load_json(path: String) -> Variant:
 	
 	var content = file.get_as_text()
 	return JSON.parse_string(content)
+
+
+func _on_shop_ui_shop_closed() -> void:
+	pass # Replace with function body.
+
+
+func _on_items_button_pressed() -> void:
+	pass # Replace with function body.
