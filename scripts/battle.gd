@@ -4,6 +4,18 @@ extends Control
 signal textlabel_closed
 signal question_answered(is_correct: bool)
 
+@onready var text_label: RichTextLabel = $PlayerPanel/TextLabel
+@onready var actions_panel: Panel = $ActionsPanel
+@onready var animations: AnimationPlayer = $AnimationPlayer
+@onready var question_popup: Panel = $QuestionPopup
+@onready var question_label: RichTextLabel = $QuestionPopup/MarginContainer/VBoxContainer/QuestionLabel
+@onready var choices_container: VBoxContainer = $QuestionPopup/MarginContainer/VBoxContainer/ChoicesContainer
+@onready var game_over_ui: GameOverUI = $GameOverUI
+@onready var shop_ui: ShopUI = $ShopUI
+@onready var enemy_container: VBoxContainer = $EnemyContainer
+@onready var player_animations: AnimationPlayer = $PlayerContainer/Player/PlayerAnimations
+
+
 @export var enemy_pool: Array[BaseEnemy]
 @export var enemy: BaseEnemy:
 	set(value):
@@ -14,17 +26,8 @@ signal question_answered(is_correct: bool)
 		
 		if enemy != null:
 			set_health($EnemyContainer/EnemyHealthBar, enemy.health, enemy.health)
-			$EnemyContainer/Enemy.texture = enemy.texture
+			$EnemyContainer/Enemy.play(enemy.name)
 
-@onready var text_label: RichTextLabel = $PlayerPanel/TextLabel
-@onready var actions_panel: Panel = $ActionsPanel
-@onready var animations: AnimationPlayer = $AnimationPlayer
-@onready var question_popup: Panel = $QuestionPopup
-@onready var question_label: RichTextLabel = $QuestionPopup/MarginContainer/VBoxContainer/QuestionLabel
-@onready var choices_container: VBoxContainer = $QuestionPopup/MarginContainer/VBoxContainer/ChoicesContainer
-@onready var game_over_ui: GameOverUI = $GameOverUI
-@onready var shop_ui: ShopUI = $ShopUI
-@onready var enemy_container: VBoxContainer = $EnemyContainer
 
 var current_player_health: int = 0
 var current_enemy_health: int = 0
@@ -34,7 +37,8 @@ var is_scrolling: bool = false
 
 func _ready() -> void:
 	set_health($EnemyContainer/EnemyHealthBar, enemy.health, enemy.health)
-	$EnemyContainer/Enemy.texture = enemy.texture
+	$EnemyContainer/Enemy.play(enemy.name)
+	
 	
 	if Engine.is_editor_hint():
 		return
@@ -53,6 +57,10 @@ func _ready() -> void:
 	actions_panel.hide()
 	question_popup.hide()
 	
+	player_animations.play("appear")
+	await player_animations.animation_finished
+	player_animations.play("idle")
+	
 	display_text("A wild [b]%s[/b] appears" % enemy.name)
 	await self.textlabel_closed
 	actions_panel.show()
@@ -61,8 +69,13 @@ func spawn_enemy() -> void:
 	enemy = enemy_pool.pick_random()
 	$EnemyContainer/EnemyHealthBar.value = enemy.health
 	$EnemyContainer/EnemyHealthBar.max_value = enemy.health
-	$EnemyContainer/Enemy.texture = enemy.texture
+	$EnemyContainer/Enemy.play(enemy.name)
 	current_enemy_health = enemy.health
+	
+	player_animations.play("appear")
+	await player_animations.animation_finished
+	player_animations.play("idle")
+	
 	animations.play("enemy_appear")
 	await animations.animation_finished
 	display_text("A wild [b]%s[/b] appears" % enemy.name)
@@ -101,8 +114,11 @@ func enemy_turn() -> void:
 	
 	if is_defending:
 		is_defending = false
+		
+		player_animations.play("defend")
 		animations.play("mini_shake")
 		await animations.animation_finished
+		player_animations.play("idle")
 		
 		display_text("You defended successfully!")
 		await textlabel_closed
@@ -110,8 +126,10 @@ func enemy_turn() -> void:
 		current_player_health = max(0, current_player_health - enemy.damage)
 		set_health($PlayerContainer/PlayerHealthBar, current_player_health, GameState.max_health)
 		
+		player_animations.play("hurt")
 		animations.play("camera_shake")
 		await animations.animation_finished
+		player_animations.play("idle")
 		
 		if current_player_health == 0:
 			game_over_ui.appear()
@@ -150,8 +168,11 @@ func _on_attack_button_pressed() -> void:
 	current_enemy_health = max(0, current_enemy_health - GameState.damage)
 	set_health($EnemyContainer/EnemyHealthBar, current_enemy_health, enemy.health)
 	
+	player_animations.play("attack")
+	await player_animations.animation_finished
 	animations.play("enemy_damaged")
 	await animations.animation_finished
+	player_animations.play("idle")
 	
 	display_text("You've dealt %d damage to the %s!" % [GameState.damage, enemy.name])
 	await textlabel_closed
@@ -163,6 +184,9 @@ func _on_attack_button_pressed() -> void:
 		
 		animations.play("enemy_death")
 		await animations.animation_finished
+		
+		player_animations.play("disappear")
+		await player_animations.animation_finished
 		
 		shop_ui.reroll_shop()
 		shop_ui.show()
