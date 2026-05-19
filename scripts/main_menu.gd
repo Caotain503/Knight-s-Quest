@@ -20,14 +20,38 @@ func _ready():
 	
 	$OptionsPanel.visible=false
 	
-	$OptionsPanel/VBoxContainer/MusicSlider.value_changed.connect(_on_music_changed)
-	$OptionsPanel/VBoxContainer/SFXSlider.value_changed.connect(_on_sfx_changed)
-	$OptionsPanel/VBoxContainer/ResolutionOption.item_selected.connect(_on_resolution_selected)
-	$OptionsPanel/VBoxContainer/WindowModeOption.item_selected.connect(_on_window_mode_selected)
-	$OptionsPanel/VBoxContainer/CloseButton.pressed.connect(_on_close_options)
+	$OptionsPanel/Control/MusicSlider.value_changed.connect(_on_music_changed)
+	$OptionsPanel/Control/SFXSlider.value_changed.connect(_on_sfx_changed)
+	$OptionsPanel/Control/ResolutionOption.item_selected.connect(_on_resolution_selected)
+	$OptionsPanel/Control/WindowModeOption.item_selected.connect(_on_window_mode_selected)
+	$OptionsPanel/Control/CloseButton.pressed.connect(_on_close_options)
 	
 	_setup_resolution_options()
 	_setup_window_mode_options()
+	
+	# Hover animasyonları için sinyalleri bağla
+	_setup_button_hover($VBoxContainer/StartButton)
+	_setup_button_hover($VBoxContainer/OptionsButton)
+	_setup_button_hover($VBoxContainer/ExitButton)
+	
+	
+
+
+
+func _setup_button_hover(button: Button) -> void:
+	var hover_texture = button.get_node("HoverTexture")
+	
+	button.mouse_entered.connect(func(): _fade_texture(hover_texture, 1.0))
+	button.mouse_exited.connect(func(): _fade_texture(hover_texture, 0.0))
+	button.button_down.connect(func(): _fade_texture(hover_texture, 1.0))
+	button.button_up.connect(func(): _fade_texture(hover_texture, 1.0 if button.is_hovered() else 0.0))
+	
+func _fade_texture(texture_rect: Control, target_alpha: float) -> void:
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(texture_rect, "modulate:a", target_alpha, 0.25)
+
 
 
 
@@ -51,14 +75,14 @@ func _on_close_options():
 
 
 func _setup_resolution_options():
-	var option_button = $OptionsPanel/VBoxContainer/ResolutionOption
+	var option_button = $OptionsPanel/Control/ResolutionOption
 	option_button.clear() 
 	for res in resolutions:
 		option_button.add_item(str(res.x) + " x " + str(res.y))
 
 
 func _setup_window_mode_options():
-	var option_button = $OptionsPanel/VBoxContainer/WindowModeOption
+	var option_button = $OptionsPanel/Control/WindowModeOption
 	option_button.clear()
 	option_button.add_item("Pencereli")     
 	option_button.add_item("Tam Ekran")     
