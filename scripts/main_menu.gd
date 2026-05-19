@@ -2,13 +2,6 @@ extends Control
 
 
 
-var resolutions = [
-	Vector2i(1280, 720),
-	Vector2i(1600, 900),
-	Vector2i(1920, 1080),
-	Vector2i(2560, 1440)
-]
-
 
 
 
@@ -22,35 +15,49 @@ func _ready():
 	
 	$OptionsPanel/Control/MusicSlider.value_changed.connect(_on_music_changed)
 	$OptionsPanel/Control/SFXSlider.value_changed.connect(_on_sfx_changed)
-	$OptionsPanel/Control/ResolutionOption.item_selected.connect(_on_resolution_selected)
 	$OptionsPanel/Control/WindowModeOption.item_selected.connect(_on_window_mode_selected)
 	$OptionsPanel/Control/CloseButton.pressed.connect(_on_close_options)
 	
-	_setup_resolution_options()
 	_setup_window_mode_options()
 	
 	# Hover animasyonları için sinyalleri bağla
 	_setup_button_hover($VBoxContainer/StartButton)
 	_setup_button_hover($VBoxContainer/OptionsButton)
 	_setup_button_hover($VBoxContainer/ExitButton)
+	_setup_button_hover($OptionsPanel/Control/CloseButton, true)
 	
 	
 
 
 
-func _setup_button_hover(button: Button) -> void:
+func _setup_button_hover(button: Button,animate_label:bool=false) -> void:
 	var hover_texture = button.get_node("HoverTexture")
+	var label = button.get_node("ButtonLabel")
 	
-	button.mouse_entered.connect(func(): _fade_texture(hover_texture, 1.0))
-	button.mouse_exited.connect(func(): _fade_texture(hover_texture, 0.0))
-	button.button_down.connect(func(): _fade_texture(hover_texture, 1.0))
-	button.button_up.connect(func(): _fade_texture(hover_texture, 1.0 if button.is_hovered() else 0.0))
+	hover_texture.modulate.a = 0.0
+	# Butona başlangıç font rengini ata (tween'in çalışması için gerekli)
 	
-func _fade_texture(texture_rect: Control, target_alpha: float) -> void:
+	
+	button.mouse_entered.connect(func(): _animate_button(label, hover_texture, true,animate_label))
+	button.mouse_exited.connect(func(): _animate_button(label, hover_texture, false,animate_label))
+	button.button_down.connect(func(): _animate_button(label, hover_texture, true,animate_label))
+	button.button_up.connect(func(): _animate_button(label, hover_texture, button.is_hovered(),animate_label))
+
+func _animate_button(label: Label, hover_texture: Control, is_hover: bool,animate_label:bool) -> void:
+	var target_alpha: float = 1.0 if is_hover else 0.0
+	
 	var tween = create_tween()
+	tween.set_parallel(true)
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(texture_rect, "modulate:a", target_alpha, 0.25)
+	
+	tween.tween_property(hover_texture, "modulate:a", target_alpha, 0.25)
+	
+	if animate_label:
+		var target_color: Color = Color(0.0, 0.0, 0.0, 1.0) if is_hover else Color.WHITE
+		tween.tween_property(label, "modulate", target_color, 0.25)
+	
+
 
 
 
@@ -63,7 +70,7 @@ func _on_start_pressed():
 
 
 func _on_options_button_pressed():
-	$OptionsPanel.visible=true
+	_open_options_panel()
 
 
 func _on_exit_pressed():
@@ -71,14 +78,54 @@ func _on_exit_pressed():
 
 
 func _on_close_options():
-	$OptionsPanel.visible = false
+	_close_options_panel()
+
+func _open_options_panel() -> void:
+	var panel = $OptionsPanel
+	
+	# Pivot'u panelin merkezine ayarla (scale ortadan olsun)
+	panel.pivot_offset = panel.size / 2
+	
+	# Başlangıç durumunu ayarla: küçük ve şeffaf
+	panel.scale = Vector2(0.8, 0.8)
+	panel.modulate.a = 0.0
+	panel.visible = true
+	
+	# Animasyon: tam boyuta ve görünür hale geç
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(panel, "scale", Vector2(1.0, 1.0), 0.35)
+	tween.tween_property(panel, "modulate:a", 1.0, 0.25)
 
 
-func _setup_resolution_options():
-	var option_button = $OptionsPanel/Control/ResolutionOption
-	option_button.clear() 
-	for res in resolutions:
-		option_button.add_item(str(res.x) + " x " + str(res.y))
+func _close_options_panel() -> void:
+	var panel = $OptionsPanel
+	
+	panel.pivot_offset = panel.size / 2
+	
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN)
+	 
+	tween.tween_property(panel, "scale", Vector2(0.8, 0.8), 0.2)
+	tween.tween_property(panel, "modulate:a", 0.0, 0.2)
+	
+	# Animasyon bitince paneli gizle
+	await tween.finished
+	panel.visible = false
+
+
+
+
+
+
+
+
+
 
 
 func _setup_window_mode_options():
@@ -97,9 +144,7 @@ func _on_sfx_changed(value: float):
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
 
 
-func _on_resolution_selected(index: int):
-	var selected = resolutions[index]
-	DisplayServer.window_set_size(selected)
+
 
 func _on_window_mode_selected(index: int):
 	if index == 0:

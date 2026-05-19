@@ -43,14 +43,6 @@ modulate_color = Color(0, 0, 0, 0.9372549)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5faoh"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ptake"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hubol"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8vx4p"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tdapf"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_7la6k"]
 font = ExtResource("5_ucygd")
 font_size = 39
@@ -103,7 +95,6 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_bky6r")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_l4mxc")
 
 [node name="NormalTexture" type="NinePatchRect" parent="VBoxContainer/StartButton" unique_id=1147974037]
-modulate = Color(0.19119321, 0.19119321, 0.19119321, 0.9019608)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,7 +108,7 @@ patch_margin_right = 32
 patch_margin_bottom = 32
 
 [node name="HoverTexture" type="NinePatchRect" parent="VBoxContainer/StartButton" unique_id=691693414]
-modulate = Color(0.19215687, 0.19215687, 0.19215687, 0.9019608)
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,13 +128,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -55.5
-offset_top = -19.0
-offset_right = 55.5
-offset_bottom = 19.0
+offset_left = -49.0
+offset_top = -18.5
+offset_right = 58.0
+offset_bottom = 58.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Start"
+text = "Start
+"
 label_settings = SubResource("LabelSettings_ucygd")
 horizontal_alignment = 3
 vertical_alignment = 3
@@ -161,7 +153,6 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_bky6r")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_l4mxc")
 
 [node name="NormalTexture" type="NinePatchRect" parent="VBoxContainer/OptionsButton" unique_id=941775916]
-modulate = Color(0.19215687, 0.19215687, 0.19215687, 0.9019608)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -175,7 +166,7 @@ patch_margin_right = 32
 patch_margin_bottom = 32
 
 [node name="HoverTexture" type="NinePatchRect" parent="VBoxContainer/OptionsButton" unique_id=1574371850]
-modulate = Color(0.19215687, 0.19215687, 0.19215687, 0.9019608)
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -195,13 +186,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -76.0
-offset_top = -19.0
-offset_right = 76.0
-offset_bottom = 19.0
+offset_left = -49.0
+offset_top = -18.5
+offset_right = 58.0
+offset_bottom = 58.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Options"
+text = "Options
+"
 label_settings = SubResource("LabelSettings_ucygd")
 horizontal_alignment = 3
 vertical_alignment = 3
@@ -219,7 +211,6 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_bky6r")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_l4mxc")
 
 [node name="NormalTexture" type="NinePatchRect" parent="VBoxContainer/ExitButton" unique_id=444729414]
-modulate = Color(0.19215687, 0.19215687, 0.19215687, 0.9019608)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -233,7 +224,7 @@ patch_margin_right = 32
 patch_margin_bottom = 32
 
 [node name="HoverTexture" type="NinePatchRect" parent="VBoxContainer/ExitButton" unique_id=2098953115]
-modulate = Color(0.19215687, 0.19215687, 0.19215687, 0.9019608)
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -253,10 +244,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -38.0
-offset_top = -19.0
-offset_right = 38.0
-offset_bottom = 19.0
+offset_left = -150.0
+offset_top = -37.0
+offset_right = -43.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Exit"
@@ -334,20 +325,16 @@ offset_bottom = 182.0
 
 [node name="CloseButton" type="Button" parent="OptionsPanel/Control" unique_id=520441793]
 layout_mode = 0
-offset_left = 240.0
-offset_top = 296.0
-offset_right = 400.0
+offset_left = 257.0
+offset_top = 311.0
+offset_right = 387.0
 offset_bottom = 361.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_5faoh")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_ptake")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_hubol")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_8vx4p")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_tdapf")
 
 [node name="NormalTexture" type="NinePatchRect" parent="OptionsPanel/Control/CloseButton" unique_id=1074793149]
 layout_mode = 0
-offset_right = 160.0
-offset_bottom = 65.0
+offset_right = 130.0
+offset_bottom = 50.0
 texture = ExtResource("9_2nypq")
 patch_margin_left = 24
 patch_margin_top = 24
@@ -360,6 +347,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_bky6r")
