@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://b8mma5egjnvn6"]
+
+[ext_resource type="FontFile" uid="uid://cs76iin45dykj" path="res://assets/fonts/9 Bit RPG.ttf" id="1_hrvec"]
+[ext_resource type="Texture2D" uid="uid://bn4uh2v0yx10x" path="res://assets/ui/Double/Panel/panel-009.png" id="2_2bqme"]
+[ext_resource type="Script" uid="uid://ciu2rf4078c2" path="res://scripts/actions_panel.gd" id="2_xsabd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sags7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q6ft3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f5xwh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2yh8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ovuuy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgw50"]
+bg_color = Color(0.03655631, 0.03655633, 0.036556277, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_68spn"]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/font_sizes/font_size = 27
+Button/fonts/font = ExtResource("1_hrvec")
+Button/styles/disabled = SubResource("StyleBoxEmpty_sags7")
+Button/styles/focus = SubResource("StyleBoxEmpty_q6ft3")
+Button/styles/hover = SubResource("StyleBoxEmpty_f5xwh")
+Button/styles/normal = SubResource("StyleBoxEmpty_2yh8d")
+Button/styles/pressed = SubResource("StyleBoxEmpty_ovuuy")
+Panel/styles/panel = SubResource("StyleBoxFlat_mgw50")
+
+[node name="ActionsPanel" type="NinePatchRect" unique_id=888285807]
+self_modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+offset_right = 256.0
+offset_bottom = 200.0
+theme = SubResource("Theme_68spn")
+texture = ExtResource("2_2bqme")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+script = ExtResource("2_xsabd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2006163353]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="AttackButton" type="Button" parent="VBoxContainer" unique_id=752042398]
+layout_mode = 2
+text = "Attack"
+
+[node name="DefendButton" type="Button" parent="VBoxContainer" unique_id=236060163]
+layout_mode = 2
+text = "Defends"
+
+[node name="ItemsButton" type="Button" parent="VBoxContainer" unique_id=676084864]
+layout_mode = 2
+text = "Items"
+
+[node name="RunButton" type="Button" parent="VBoxContainer" unique_id=1274070316]
+layout_mode = 2
+text = "Run"
+
+[connection signal="pressed" from="VBoxContainer/AttackButton" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/DefendButton" to="." method="_on_defend_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/RunButton" to="." method="_on_run_button_pressed"]

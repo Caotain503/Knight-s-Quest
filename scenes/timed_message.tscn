@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://c06qrxxqy5sx8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7rfc"]
+bg_color = Color(0, 0, 0, 0.44705883)
+
+[sub_resource type="Animation" id="Animation_2ltg7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0767e"]
+resource_name = "fade"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g3ijk"]
+_data = {
+&"RESET": SubResource("Animation_2ltg7"),
+&"fade": SubResource("Animation_0767e")
+}
+
+[node name="RichTextLabel" type="RichTextLabel" unique_id=1540702952]
+offset_right = 64.0
+offset_bottom = 46.0
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_o7rfc")
+theme_override_styles/focus = SubResource("StyleBoxFlat_o7rfc")
+bbcode_enabled = true
+fit_content = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2023598994]
+libraries/ = SubResource("AnimationLibrary_g3ijk")
+autoplay = &"fade"
