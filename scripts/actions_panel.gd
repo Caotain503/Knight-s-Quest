@@ -30,8 +30,8 @@ func _on_attack_button_pressed() -> void:
 	
 	parent.player_animations.play("attack")
 	await parent.player_animations.animation_finished
-	parent.animations.play("enemy_damaged")
-	await parent.animations.animation_finished
+	parent.enemy_animations.play("enemy_damaged")
+	await parent.enemy_animations.animation_finished
 	parent.player_animations.play("idle")
 	
 	parent.add_history_entry("[color=green]You've dealt %d damage to the %s![/color]" % [GameState.damage, parent.enemy.name])
@@ -42,8 +42,8 @@ func _on_attack_button_pressed() -> void:
 		parent.add_history_entry("[b]%s was defeated. You earned %d coins![/b]" % [parent.enemy.name, parent.enemy.reward])
 		await get_tree().create_timer(0.8).timeout
 		
-		parent.animations.play("enemy_death")
-		await parent.animations.animation_finished
+		parent.enemy_animations.play("enemy_death")
+		await parent.enemy_animations.animation_finished
 		
 		parent.player_animations.play("disappear")
 		await parent.player_animations.animation_finished

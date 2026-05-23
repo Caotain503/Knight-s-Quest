@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://brh88avjwimb2" path="res://assets/sprites/enemy_set1/enemy_rock.png" id="12_bi5l8"]
 [ext_resource type="Texture2D" uid="uid://cd7ytqyme7hut" path="res://assets/sprites/enemy_set1/enemy_slime.png" id="13_jt4d8"]
 [ext_resource type="Texture2D" uid="uid://skl04jmp7pvf" path="res://assets/sprites/enemy_set1/enemy_vampire.png" id="14_kl6ie"]
+[ext_resource type="FontFile" uid="uid://bawu5pkyjhc3a" path="res://assets/fonts/BoldPixels.ttf" id="15_1m01a"]
 [ext_resource type="PackedScene" uid="uid://b8mma5egjnvn6" path="res://scenes/actions_panel.tscn" id="18_dd63g"]
 [ext_resource type="PackedScene" uid="uid://7fc76qvn4ua" path="res://scenes/question_popup.tscn" id="19_fpf3k"]
 
@@ -57,7 +58,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(136, 192)]
+"values": [Vector2(70, 126)]
 }
 
 [sub_resource type="Animation" id="Animation_saiin"]
@@ -109,7 +110,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-142, 295), Vector2(136, 295)]
+"values": [Vector2(-450, 110), Vector2(70, 110)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -126,7 +127,6 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_fpf3k"]
 resource_name = "attack"
-length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -170,10 +170,10 @@ tracks/3/path = NodePath(".:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.36666667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1.0000001, 1),
 "update": 0,
-"values": [Vector2(136, 295), Vector2(596, 295), Vector2(136, 295)]
+"values": [Vector2(70, 110), Vector2(1000, 110), Vector2(70, 110)]
 }
 
 [sub_resource type="Animation" id="Animation_lv4so"]
@@ -265,7 +265,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(136, 295), Vector2(1170, 295)]
+"values": [Vector2(70, 110), Vector2(1600, 110)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -599,8 +599,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_saiin"]
-
 [sub_resource type="Animation" id="Animation_lpir7"]
 length = 0.001
 tracks/0/type = "value"
@@ -681,7 +679,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(868, 160), Vector2(808, 160)]
+"values": [Vector2(1400, 575), Vector2(1300, 575)]
 }
 
 [sub_resource type="Animation" id="Animation_6vh42"]
@@ -725,7 +723,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(808, 160), Vector2(868, 160)]
+"values": [Vector2(1300, 575), Vector2(1400, 575)]
 }
 
 [sub_resource type="Animation" id="Animation_f4pi3"]
@@ -754,6 +752,8 @@ _data = {
 &"mini_shake": SubResource("Animation_f4pi3")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_saiin"]
+
 [node name="Battle" type="Control" unique_id=34107999]
 layout_mode = 3
 anchors_preset = 15
@@ -766,29 +766,42 @@ enemy_pool = Array[ExtResource("2_yahae")]([ExtResource("2_lpir7"), ExtResource(
 enemy = ExtResource("4_saiin")
 
 [node name="Background" type="TextureRect" parent="." unique_id=995061981]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("5_saiin")
 expand_mode = 1
 
-[node name="PlayerContainer" type="VBoxContainer" parent="." unique_id=1095280758]
+[node name="PlayerContainer" type="Control" parent="." unique_id=291532044]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 64.0
-offset_top = -164.0
-offset_right = 348.00073
-offset_bottom = 164.0
+anchor_left = 0.071
+anchor_top = 0.51100004
+anchor_right = 0.14500001
+anchor_bottom = 0.69200003
+offset_left = 239.68
+offset_top = 136.11993
+offset_right = 237.59998
+offset_bottom = 140.63995
 grow_vertical = 2
+scale = Vector2(1.041, 1.015)
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="PlayerContainer" unique_id=1756717593]
 visible = false
 custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_a12nh")
-theme_override_font_sizes/font_size = 36
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -15.369835
+offset_top = -102.46306
+offset_right = 8.630157
+offset_bottom = -62.46306
+grow_horizontal = 2
+scale = Vector2(1.0313361, 1.0634869)
+theme_override_fonts/font = ExtResource("15_1m01a")
+theme_override_font_sizes/font_size = 41
 theme_override_styles/background = SubResource("StyleBoxFlat_a12nh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lpir7")
 max_value = 30.0
@@ -805,16 +818,16 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 5
-theme_override_fonts/font = ExtResource("4_a12nh")
-theme_override_font_sizes/font_size = 27
+theme_override_fonts/font = ExtResource("15_1m01a")
+theme_override_font_sizes/font_size = 30
 text = "HP: 30/30"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Player" type="Sprite2D" parent="PlayerContainer" unique_id=1299467827]
 texture_filter = 1
-position = Vector2(136, 192)
-scale = Vector2(4, 4)
+position = Vector2(70, 126)
+scale = Vector2(5, 5)
 texture = ExtResource("7_p0caf")
 hframes = 8
 
@@ -822,23 +835,24 @@ hframes = 8
 libraries/ = SubResource("AnimationLibrary_f0g0v")
 autoplay = &"idle"
 
-[node name="EnemyContainer" type="VBoxContainer" parent="." unique_id=1588446530]
+[node name="EnemyContainer" type="Control" parent="." unique_id=1462632130]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -344.0
-offset_top = -164.0
-offset_right = -59.996582
-offset_bottom = 164.0
-grow_horizontal = 0
-grow_vertical = 2
+anchor_left = 0.69600004
+anchor_top = 0.54800004
+anchor_right = 0.85200006
+anchor_bottom = 0.82600003
+offset_left = -36.32007
+offset_top = -16.840027
+offset_right = -35.84314
+offset_bottom = -17.080505
 
 [node name="EnemyHealthBar" type="ProgressBar" parent="EnemyContainer" unique_id=1687239074]
 custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
+layout_mode = 0
+offset_left = 44.0
+offset_top = 9.0
+offset_right = 236.0
+offset_bottom = 49.0
 theme_override_fonts/font = ExtResource("4_a12nh")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/background = SubResource("StyleBoxFlat_a12nh")
@@ -857,19 +871,22 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 5
-theme_override_fonts/font = ExtResource("4_a12nh")
-theme_override_font_sizes/font_size = 27
+theme_override_fonts/font = ExtResource("15_1m01a")
+theme_override_font_sizes/font_size = 30
 text = "HP: 30/30"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Enemy" type="AnimatedSprite2D" parent="EnemyContainer" unique_id=1468326145]
 texture_filter = 1
-position = Vector2(16, 248)
+position = Vector2(136, 176)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_go4uh")
-animation = &"ogre"
-frame_progress = 0.98052436
+animation = &"centaur"
+frame_progress = 0.3114777
+
+[node name="EnemyAnimations" type="AnimationPlayer" parent="EnemyContainer/Enemy" unique_id=518054040]
+libraries/ = SubResource("AnimationLibrary_4k1nj")
 
 [node name="ActionsPanel" parent="." unique_id=165960886 node_paths=PackedStringArray("parent") instance=ExtResource("18_dd63g")]
 layout_mode = 1
@@ -888,6 +905,11 @@ parent = NodePath("..")
 
 [node name="QuestionPopup" parent="." unique_id=1645113938 instance=ExtResource("19_fpf3k")]
 layout_mode = 1
+offset_left = -352.00006
+offset_top = -204.0
+offset_right = 248.0
+offset_bottom = 100.0
+scale = Vector2(1.175, 1.175)
 
 [node name="GameOverUI" parent="." unique_id=2010137967 instance=ExtResource("6_4k1nj")]
 visible = false
@@ -927,10 +949,6 @@ alignment = 2
 visible = false
 layout_mode = 1
 item_pool = Array[ExtResource("8_f4pi3")]([ExtResource("10_v7i3o")])
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=518054040]
-root_node = NodePath("../EnemyContainer/Enemy")
-libraries/ = SubResource("AnimationLibrary_4k1nj")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=947797040]
 anchor_mode = 0

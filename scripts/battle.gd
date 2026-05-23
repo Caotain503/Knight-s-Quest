@@ -6,13 +6,13 @@ class_name BattleScene
 const timed_message_scene: PackedScene = preload("res://scenes/timed_message.tscn")
 
 @onready var actions_panel: NinePatchRect = $ActionsPanel
-@onready var animations: AnimationPlayer = $AnimationPlayer
+@onready var enemy_animations: AnimationPlayer = $EnemyContainer/Enemy/EnemyAnimations
 @onready var question_popup: QuestionPopup = $QuestionPopup
 @onready var question_label: RichTextLabel = $QuestionPopup/MarginContainer/VBoxContainer/QuestionLabel
 @onready var choices_container: VBoxContainer = $QuestionPopup/MarginContainer/VBoxContainer/ChoicesContainer
 @onready var game_over_ui: GameOverUI = $GameOverUI
 @onready var shop_ui: ShopUI = $ShopUI
-@onready var enemy_container: VBoxContainer = $EnemyContainer
+@onready var enemy_container: Control = $EnemyContainer
 @onready var player_animations: AnimationPlayer = $PlayerContainer/Player/PlayerAnimations
 
 @onready var timed_messages: VBoxContainer = $MessagePanel/ScrollContainer/Messages
@@ -79,8 +79,8 @@ func spawn_enemy() -> void:
 	await player_animations.animation_finished
 	player_animations.play("idle")
 	
-	animations.play("enemy_appear")
-	await animations.animation_finished
+	enemy_animations.play("enemy_appear")
+	await enemy_animations.animation_finished
 	
 	add_history_entry("A wild [b]%s[/b] appears!" % enemy.name)
 	await get_tree().create_timer(0.6).timeout
@@ -104,8 +104,8 @@ func enemy_turn() -> void:
 		is_defending = false
 		
 		player_animations.play("defend")
-		animations.play("mini_shake")
-		await animations.animation_finished
+		enemy_animations.play("mini_shake")
+		await enemy_animations.animation_finished
 		player_animations.play("idle")
 		
 		add_history_entry("You defended successfully!")
@@ -115,8 +115,8 @@ func enemy_turn() -> void:
 		set_health($PlayerContainer/PlayerHealthBar, current_player_health, GameState.max_health)
 		
 		player_animations.play("hurt")
-		animations.play("camera_shake")
-		await animations.animation_finished
+		enemy_animations.play("camera_shake")
+		await enemy_animations.animation_finished
 		player_animations.play("idle")
 		
 		if current_player_health == 0:

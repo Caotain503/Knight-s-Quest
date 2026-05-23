@@ -67,27 +67,31 @@ script = ExtResource("1_0ykhv")
 [node name="Background" type="TextureRect" parent="." unique_id=1632044286]
 texture_filter = 1
 material = SubResource("ShaderMaterial_826wr")
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_l72w3")
 expand_mode = 1
 
 [node name="Logo" type="TextureRect" parent="." unique_id=27111846]
 layout_mode = 0
-offset_left = 320.0
-offset_top = 24.0
-offset_right = 832.0
-offset_bottom = 296.0
+offset_left = 704.0
+offset_top = 240.0
+offset_right = 1216.0
+offset_bottom = 512.0
 texture = ExtResource("2_2wh52")
 expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=295462847]
 layout_mode = 0
-offset_left = 426.0
-offset_top = 320.0
-offset_right = 726.0011
-offset_bottom = 576.0
+offset_left = 808.0
+offset_top = 640.0
+offset_right = 1108.0011
+offset_bottom = 896.0
+scale = Vector2(1.04, 1.04)
 theme_override_constants/separation = 18
 
 [node name="StartButton" type="Button" parent="VBoxContainer" unique_id=50343742]
@@ -266,10 +270,11 @@ vertical_alignment = 3
 
 [node name="OptionsPanel" type="Panel" parent="." unique_id=1156664572]
 layout_mode = 0
-offset_left = 256.0
-offset_top = 128.0
-offset_right = 896.0
-offset_bottom = 512.0
+offset_left = 640.00006
+offset_top = 368.0
+offset_right = 1280.0
+offset_bottom = 752.0
+scale = Vector2(1.25, 1.25)
 pivot_offset = Vector2(320, 192)
 theme_override_styles/panel = SubResource("StyleBoxTexture_l4mxc")
 
