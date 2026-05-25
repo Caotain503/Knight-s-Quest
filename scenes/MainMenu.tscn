@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://cecc2upbnmjsf"]
 
 [ext_resource type="Script" uid="uid://fabmpd125u7x" path="res://scripts/main_menu.gd" id="1_0ykhv"]
-[ext_resource type="Texture2D" uid="uid://dh8m64xnlw6er" path="res://assets/sprites/ui/logo.png" id="2_2wh52"]
 [ext_resource type="Shader" uid="uid://dq3epkbpa4558" path="res://assets/shaders/MainMenu.gdshader" id="2_ow34m"]
-[ext_resource type="Texture2D" uid="uid://dmd3fb27xvwx2" path="res://assets/backgrounds/forest.jpeg" id="3_l72w3"]
+[ext_resource type="Texture2D" uid="uid://m73e6s3aiuxw" path="res://assets/backgrounds/forest_bg2.png" id="3_7la6k"]
+[ext_resource type="Texture2D" uid="uid://dpkbihonop2o5" path="res://assets/ui/kq_logo.png" id="4_7la6k"]
 [ext_resource type="FontFile" uid="uid://cs76iin45dykj" path="res://assets/fonts/9 Bit RPG.ttf" id="5_ucygd"]
-[ext_resource type="Texture2D" uid="uid://cbia03tm1ky5d" path="res://assets/ui/Double/Border/panel-border-028.png" id="6_ucygd"]
-[ext_resource type="Texture2D" uid="uid://c7u2rmy5h2yks" path="res://assets/ui/Double/Panel/panel-028.png" id="7_mipys"]
-[ext_resource type="Texture2D" uid="uid://gpnnqwmgefqw" path="res://assets/ui/Double/Panel/panel-007.png" id="8_7la6k"]
+[ext_resource type="Texture2D" uid="uid://x7l6ngsttics" path="res://assets/ui/Default/Border/panel-border-028.png" id="6_7la6k"]
+[ext_resource type="Texture2D" uid="uid://c03ft2fpf21gh" path="res://assets/ui/Default/Panel/panel-010.png" id="8_2nypq"]
 [ext_resource type="Texture2D" uid="uid://bj7lw3ydpaxxk" path="res://assets/ui/Double/Border/panel-border-008.png" id="9_2nypq"]
 [ext_resource type="Texture2D" uid="uid://dc0l74y3he3ju" path="res://assets/ui/Double/Transparent border/panel-transparent-border-009.png" id="10_bky6r"]
+[ext_resource type="FontFile" uid="uid://bawu5pkyjhc3a" path="res://assets/fonts/BoldPixels.ttf" id="11_2nypq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_826wr"]
 shader = ExtResource("2_ow34m")
@@ -30,16 +30,18 @@ shader_parameter/distortion_scale = 4.430000162924999
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l4mxc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ucygd"]
-font = ExtResource("5_ucygd")
-font_size = 54
+font = ExtResource("11_2nypq")
+font_size = 55
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v41fp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4mxc"]
-texture = ExtResource("8_7la6k")
-texture_margin_left = 32.0
-texture_margin_top = 32.0
-texture_margin_right = 32.0
-texture_margin_bottom = 32.0
-modulate_color = Color(0, 0, 0, 0.9372549)
+texture = ExtResource("8_2nypq")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+modulate_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5faoh"]
 
@@ -52,8 +54,8 @@ modulate_color = Color(0, 0, 0, 0.9372549)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tdapf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7la6k"]
-font = ExtResource("5_ucygd")
-font_size = 39
+font = ExtResource("11_2nypq")
+font_size = 36
 
 [node name="MainMenu" type="Control" unique_id=1342559538]
 layout_mode = 3
@@ -73,24 +75,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_l72w3")
+texture = ExtResource("3_7la6k")
 expand_mode = 1
 
 [node name="Logo" type="TextureRect" parent="." unique_id=27111846]
 layout_mode = 0
-offset_left = 704.0
-offset_top = 240.0
-offset_right = 1216.0
-offset_bottom = 512.0
-texture = ExtResource("2_2wh52")
+offset_left = 672.0
+offset_top = 184.0
+offset_right = 1248.0
+offset_bottom = 579.0
+texture = ExtResource("4_7la6k")
 expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=295462847]
 layout_mode = 0
-offset_left = 808.0
-offset_top = 640.0
-offset_right = 1108.0011
-offset_bottom = 896.0
+offset_left = 800.0
+offset_top = 632.0
+offset_right = 1100.0011
+offset_bottom = 888.0
 scale = Vector2(1.04, 1.04)
 theme_override_constants/separation = 18
 
@@ -114,25 +116,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_ucygd")
 patch_margin_left = 32
 patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="HoverTexture" type="NinePatchRect" parent="VBoxContainer/StartButton" unique_id=691693414]
-modulate = Color(0.19215687, 0.19215687, 0.19215687, 0.9019608)
+[node name="HoverTexture" type="NinePatchRect" parent="VBoxContainer/StartButton" unique_id=801587275]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -166.0
+offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("7_mipys")
-patch_margin_left = 32
-patch_margin_top = 32
-patch_margin_right = 32
-patch_margin_bottom = 32
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("6_7la6k")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
 [node name="ButtonLabel" type="Label" parent="VBoxContainer/StartButton" unique_id=827231386]
 layout_mode = 1
@@ -149,16 +153,17 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Start"
 label_settings = SubResource("LabelSettings_ucygd")
-horizontal_alignment = 3
-vertical_alignment = 3
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer" unique_id=1548414734]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("5_ucygd")
 theme_override_font_sizes/font_size = 46
-theme_override_styles/normal = SubResource("StyleBoxEmpty_8a8k8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v41fp")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_7la6k")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_2nypq")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_bky6r")
@@ -172,25 +177,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_ucygd")
 patch_margin_left = 32
 patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
 [node name="HoverTexture" type="NinePatchRect" parent="VBoxContainer/OptionsButton" unique_id=1574371850]
-modulate = Color(0.19215687, 0.19215687, 0.19215687, 0.9019608)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -166.0
+offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("7_mipys")
-patch_margin_left = 32
-patch_margin_top = 32
-patch_margin_right = 32
-patch_margin_bottom = 32
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("6_7la6k")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
 [node name="ButtonLabel" type="Label" parent="VBoxContainer/OptionsButton" unique_id=800702889]
 layout_mode = 1
@@ -207,8 +214,8 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Options"
 label_settings = SubResource("LabelSettings_ucygd")
-horizontal_alignment = 3
-vertical_alignment = 3
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=413184834]
 custom_minimum_size = Vector2(300, 60)
@@ -223,32 +230,34 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_bky6r")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_l4mxc")
 
 [node name="NormalTexture" type="NinePatchRect" parent="VBoxContainer/ExitButton" unique_id=444729414]
-modulate = Color(0.19215687, 0.19215687, 0.19215687, 0.9019608)
+modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_ucygd")
 patch_margin_left = 32
 patch_margin_top = 32
 patch_margin_right = 32
 patch_margin_bottom = 32
 
-[node name="HoverTexture" type="NinePatchRect" parent="VBoxContainer/ExitButton" unique_id=2098953115]
-modulate = Color(0.19215687, 0.19215687, 0.19215687, 0.9019608)
+[node name="HoverTexture" type="NinePatchRect" parent="VBoxContainer/ExitButton" unique_id=544539273]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -166.0
+offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("7_mipys")
-patch_margin_left = 32
-patch_margin_top = 32
-patch_margin_right = 32
-patch_margin_bottom = 32
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("6_7la6k")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
 [node name="ButtonLabel" type="Label" parent="VBoxContainer/ExitButton" unique_id=1627294726]
 layout_mode = 1
@@ -257,18 +266,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -38.0
-offset_top = -19.0
-offset_right = 38.0
-offset_bottom = 19.0
+offset_left = -50.0
+offset_top = -25.730797
+offset_right = 53.0
+offset_bottom = 23.269203
 grow_horizontal = 2
 grow_vertical = 2
 text = "Exit"
 label_settings = SubResource("LabelSettings_ucygd")
-horizontal_alignment = 3
-vertical_alignment = 3
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="OptionsPanel" type="Panel" parent="." unique_id=1156664572]
+visible = false
 layout_mode = 0
 offset_left = 640.00006
 offset_top = 368.0
@@ -380,10 +390,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -40.5
-offset_top = -13.5
-offset_right = 41.5
-offset_bottom = 13.5
+offset_left = -41.0
+offset_top = -16.0
+offset_right = 42.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Close"

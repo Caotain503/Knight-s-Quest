@@ -4,7 +4,7 @@ class_name BattleScene
 
 
 const timed_message_scene: PackedScene = preload("res://scenes/timed_message.tscn")
-
+@onready var portal: AnimatedSprite2D =$PlayerContainer/EntryPortal
 @onready var actions_panel: NinePatchRect = $ActionsPanel
 @onready var enemy_animations: AnimationPlayer = $EnemyContainer/Enemy/EnemyAnimations
 @onready var question_popup: QuestionPopup = $QuestionPopup
@@ -13,10 +13,14 @@ const timed_message_scene: PackedScene = preload("res://scenes/timed_message.tsc
 @onready var game_over_ui: GameOverUI = $GameOverUI
 @onready var shop_ui: ShopUI = $ShopUI
 @onready var enemy_container: Control = $EnemyContainer
-@onready var player_animations: AnimationPlayer = $PlayerContainer/Player/PlayerAnimations
+@onready var player: AnimatedSprite2D = $PlayerContainer/Player
 
 @onready var timed_messages: VBoxContainer = $MessagePanel/ScrollContainer/Messages
 @onready var message_scroll: ScrollContainer = $MessagePanel/ScrollContainer
+
+
+var player_start_position: Vector2  
+var available_enemies: Array[BaseEnemy] = []
 
 @export var enemy_pool: Array[BaseEnemy]
 @export var enemy: BaseEnemy:
@@ -40,19 +44,19 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	set_health($PlayerContainer/PlayerHealthBar, GameState.current_health, GameState.max_health)
+	portal.visible=false
 	
+	set_health($PlayerContainer/PlayerHealthBar, GameState.current_health, GameState.max_health)
 	current_player_health = GameState.current_health
 	current_enemy_health = enemy.health
 	
 	actions_panel.hide()
 	question_popup.hide()
 	
-	#await question_popup.questions_loaded
+	player_start_position = player.position
+	await player_enter()
 	
-	player_animations.play("appear")
-	await player_animations.animation_finished
-	player_animations.play("idle")
+	$PlayerContainer/PlayerHealthBar.visible=true
 	
 	
 	add_history_entry("A wild [b]%s[/b] appears!" % enemy.name)
@@ -68,16 +72,23 @@ func add_history_entry(text: String) -> void:
 	message_scroll.scroll_vertical = int(message_scroll.get_v_scroll_bar().max_value)
 
 func spawn_enemy() -> void:
-	randomize()
-	enemy = enemy_pool.pick_random()
+	
+	if available_enemies.is_empty():
+		available_enemies = enemy_pool.duplicate()
+	
+	var index = randi() % available_enemies.size()
+	enemy = available_enemies[index]
+	available_enemies.remove_at(index)
+	
+	
+	
+	
 	$EnemyContainer/EnemyHealthBar.value = enemy.health
 	$EnemyContainer/EnemyHealthBar.max_value = enemy.health
 	$EnemyContainer/Enemy.play(enemy.name)
 	current_enemy_health = enemy.health
 	
-	player_animations.play("appear")
-	await player_animations.animation_finished
-	player_animations.play("idle")
+	await player_enter()
 	
 	enemy_animations.play("enemy_appear")
 	await enemy_animations.animation_finished
@@ -103,23 +114,29 @@ func enemy_turn() -> void:
 	if is_defending:
 		is_defending = false
 		
-		player_animations.play("defend")
+		player.play("defend")
 		enemy_animations.play("mini_shake")
 		await enemy_animations.animation_finished
-		player_animations.play("idle")
+		player.play("idle")
 		
 		add_history_entry("You defended successfully!")
 		await get_tree().create_timer(0.5).timeout
 	else:
+		play_enemy_animation("attack")
+		await get_tree().create_timer(0.3).timeout
+		
 		current_player_health = max(0, current_player_health - enemy.damage)
 		set_health($PlayerContainer/PlayerHealthBar, current_player_health, GameState.max_health)
 		
-		player_animations.play("hurt")
+		player.play("hurt")
 		enemy_animations.play("camera_shake")
 		await enemy_animations.animation_finished
-		player_animations.play("idle")
+		player.play("idle")
 		
 		if current_player_health == 0:
+			player.play("death")
+			await player.animation_finished
+			$PlayerContainer/PlayerHealthBar.visible=false
 			game_over_ui.appear()
 			return
 		
@@ -127,3 +144,77 @@ func enemy_turn() -> void:
 		await get_tree().create_timer(0.5).timeout
 	
 	actions_panel.show()
+
+
+
+func player_exit() -> void:
+	portal.flip_h = true
+	var portal_position = player_start_position + Vector2(1200, -30)
+	portal.position = portal_position
+	portal.visible = true
+	
+	portal.play("portal_appear")
+	await portal.animation_finished
+	portal.play("portal_idle")
+	
+	
+	$PlayerContainer/PlayerHealthBar.visible=false
+	player.play("walk")
+	var exit_tween = create_tween()
+	exit_tween.set_trans(Tween.TRANS_LINEAR)
+	exit_tween.tween_property(player, "position", portal_position, 2)
+	await exit_tween.finished
+	
+	player.visible = false
+	
+	portal.play("portal_disappear")
+	await portal.animation_finished
+	portal.visible = false
+	
+	player.visible = true
+	
+
+func player_enter() -> void:
+	portal.flip_h = false
+	var portal_position = player_start_position + Vector2(-300, 0)
+	player.position = portal_position
+	player.visible = false
+	
+	
+	portal.position = portal_position
+	portal.visible = true
+	
+	portal.play("portal_appear")
+	await portal.animation_finished
+	portal.play("portal_idle")
+	
+	player.visible = true
+	player.play("walk")
+	
+	var walk_tween = create_tween()
+	walk_tween.set_trans(Tween.TRANS_LINEAR)
+	walk_tween.tween_property(player, "position", player_start_position, 1)
+	
+	await get_tree().create_timer(1 ).timeout
+	portal.play("portal_disappear")
+	await walk_tween.finished
+	
+	
+	$PlayerContainer/PlayerHealthBar.visible=true
+	
+	player.play("idle")
+	
+	portal.visible = false
+	
+
+
+func play_enemy_animation(anim_type: String) ->void:
+	var enemy_sprite =$EnemyContainer/Enemy
+	var anim_name = enemy.name + "_" + anim_type
+	
+	if enemy_sprite.sprite_frames.has_animation(anim_name):
+		enemy_sprite.play(anim_name)
+		await enemy_sprite.animation_finished
+		enemy_sprite.play(enemy.name)
+	else:
+		push_warning("Animation Not Found" + anim_name)

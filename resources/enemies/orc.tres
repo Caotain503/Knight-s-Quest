@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BaseEnemy" format=3 uid="uid://rna5exjw10q5"]
+
+[ext_resource type="Script" uid="uid://dvndcxk4aetrq" path="res://resources/BaseEnemy.gd" id="1_bfosw"]
+
+[resource]
+script = ExtResource("1_bfosw")
+name = "orc"
+metadata/_custom_type_script = "uid://dvndcxk4aetrq"
