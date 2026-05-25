@@ -14,7 +14,7 @@ const timed_message_scene: PackedScene = preload("res://scenes/timed_message.tsc
 @onready var shop_ui: ShopUI = $ShopUI
 @onready var enemy_container: Control = $EnemyContainer
 @onready var player: AnimatedSprite2D = $PlayerContainer/Player
-
+@onready var information_popup = $InformationPopup
 @onready var timed_messages: VBoxContainer = $MessagePanel/ScrollContainer/Messages
 @onready var message_scroll: ScrollContainer = $MessagePanel/ScrollContainer
 
@@ -52,6 +52,7 @@ func _ready() -> void:
 	
 	actions_panel.hide()
 	question_popup.hide()
+	information_popup.hide()
 	
 	player_start_position = player.position
 	await player_enter()
@@ -61,7 +62,8 @@ func _ready() -> void:
 	
 	add_history_entry("A wild [b]%s[/b] appears!" % enemy.name)
 	await get_tree().create_timer(0.6).timeout
-	actions_panel.show()
+	show_actions_panel()
+	
 
 func add_history_entry(text: String) -> void:
 	var timed_msg = timed_message_scene.instantiate()
@@ -81,8 +83,6 @@ func spawn_enemy() -> void:
 	available_enemies.remove_at(index)
 	
 	
-	
-	
 	$EnemyContainer/EnemyHealthBar.value = enemy.health
 	$EnemyContainer/EnemyHealthBar.max_value = enemy.health
 	$EnemyContainer/Enemy.play(enemy.name)
@@ -95,7 +95,9 @@ func spawn_enemy() -> void:
 	
 	add_history_entry("A wild [b]%s[/b] appears!" % enemy.name)
 	await get_tree().create_timer(0.6).timeout
-	actions_panel.show()
+	show_actions_panel()
+
+
 
 func set_health(progress_bar: ProgressBar, health: int, max_health: int):
 	progress_bar.max_value = max_health
@@ -107,6 +109,7 @@ func set_health(progress_bar: ProgressBar, health: int, max_health: int):
 	tween.tween_property(progress_bar, "value", health, 0.5)
 
 
+
 func enemy_turn() -> void:
 	add_history_entry("[color=yellow]%s[/color] launches at you fiercely!" % enemy.name)
 	await get_tree().create_timer(0.5).timeout
@@ -115,6 +118,7 @@ func enemy_turn() -> void:
 		is_defending = false
 		
 		player.play("defend")
+		play_enemy_animation("attack")
 		enemy_animations.play("mini_shake")
 		await enemy_animations.animation_finished
 		player.play("idle")
@@ -143,7 +147,7 @@ func enemy_turn() -> void:
 		add_history_entry("[color=yellow]%s[/color] dealt [color=red]%d[/color] damage!" % [enemy.name, enemy.damage])
 		await get_tree().create_timer(0.5).timeout
 	
-	actions_panel.show()
+	show_actions_panel()
 
 
 
@@ -218,3 +222,33 @@ func play_enemy_animation(anim_type: String) ->void:
 		enemy_sprite.play(enemy.name)
 	else:
 		push_warning("Animation Not Found" + anim_name)
+
+
+func show_actions_panel() -> void:
+	actions_panel.pivot_offset = actions_panel.size / 2
+	actions_panel.scale = Vector2(0.8, 0.8)
+	actions_panel.modulate.a = 0.0
+	actions_panel.visible = true
+	
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(actions_panel, "scale", Vector2(1.0, 1.0), 0.35)
+	tween.tween_property(actions_panel, "modulate:a", 1.0, 0.25)
+	
+
+func hide_actions_panel() -> void:
+	actions_panel.pivot_offset = actions_panel.size / 2
+	
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN)
+	
+	tween.tween_property(actions_panel, "scale", Vector2(0.8, 0.8), 0.2)
+	tween.tween_property(actions_panel, "modulate:a", 0.0, 0.2)
+	
+	await tween.finished
+	actions_panel.visible = false

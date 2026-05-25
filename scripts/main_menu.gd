@@ -35,7 +35,7 @@ func _setup_button_hover(button: Button,animate_label:bool=false) -> void:
 	var label = button.get_node("ButtonLabel")
 	
 	hover_texture.modulate.a = 0.0
-	# Butona başlangıç font rengini ata (tween'in çalışması için gerekli)
+	
 	
 	
 	button.mouse_entered.connect(func(): _animate_button(label, hover_texture, true,animate_label))

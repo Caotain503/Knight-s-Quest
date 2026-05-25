@@ -6,10 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dpkbihonop2o5" path="res://assets/ui/kq_logo.png" id="4_7la6k"]
 [ext_resource type="FontFile" uid="uid://cs76iin45dykj" path="res://assets/fonts/9 Bit RPG.ttf" id="5_ucygd"]
 [ext_resource type="Texture2D" uid="uid://x7l6ngsttics" path="res://assets/ui/Default/Border/panel-border-028.png" id="6_7la6k"]
+[ext_resource type="FontFile" uid="uid://c307hnjhqe3cs" path="res://assets/fonts/TrajanPro-Regular.ttf" id="7_2nypq"]
 [ext_resource type="Texture2D" uid="uid://c03ft2fpf21gh" path="res://assets/ui/Default/Panel/panel-010.png" id="8_2nypq"]
 [ext_resource type="Texture2D" uid="uid://bj7lw3ydpaxxk" path="res://assets/ui/Double/Border/panel-border-008.png" id="9_2nypq"]
+[ext_resource type="FontFile" uid="uid://b75jj2mkcohfm" path="res://assets/fonts/Perpetua-Regular.otf" id="9_bky6r"]
 [ext_resource type="Texture2D" uid="uid://dc0l74y3he3ju" path="res://assets/ui/Double/Transparent border/panel-transparent-border-009.png" id="10_bky6r"]
-[ext_resource type="FontFile" uid="uid://bawu5pkyjhc3a" path="res://assets/fonts/BoldPixels.ttf" id="11_2nypq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_826wr"]
 shader = ExtResource("2_ow34m")
@@ -30,8 +31,9 @@ shader_parameter/distortion_scale = 4.430000162924999
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l4mxc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ucygd"]
-font = ExtResource("11_2nypq")
-font_size = 55
+resource_name = "menu_label"
+font = ExtResource("7_2nypq")
+font_size = 45
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v41fp"]
 
@@ -42,6 +44,18 @@ texture_margin_top = 16.0
 texture_margin_right = 16.0
 texture_margin_bottom = 16.0
 modulate_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l4mxc"]
+font = ExtResource("9_bky6r")
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_5faoh"]
+font = ExtResource("9_bky6r")
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_bky6r"]
+font = ExtResource("9_bky6r")
+font_size = 35
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5faoh"]
 
@@ -54,8 +68,8 @@ modulate_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tdapf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7la6k"]
-font = ExtResource("11_2nypq")
-font_size = 36
+font = ExtResource("9_bky6r")
+font_size = 44
 
 [node name="MainMenu" type="Control" unique_id=1342559538]
 layout_mode = 3
@@ -73,6 +87,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_7la6k")
@@ -145,10 +160,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -55.5
-offset_top = -19.0
-offset_right = 55.5
-offset_bottom = 19.0
+offset_left = -65.384605
+offset_top = -21.115364
+offset_right = 69.61539
+offset_bottom = 24.884636
 grow_horizontal = 2
 grow_vertical = 2
 text = "Start"
@@ -206,10 +221,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -76.0
-offset_top = -19.0
-offset_right = 76.0
-offset_bottom = 19.0
+offset_left = -103.84614
+offset_top = -19.807686
+offset_right = 103.15387
+offset_bottom = 26.192314
 grow_horizontal = 2
 grow_vertical = 2
 text = "Options"
@@ -267,9 +282,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = -25.730797
+offset_top = -19.000027
 offset_right = 53.0
-offset_bottom = 23.269203
+offset_bottom = 29.99997
 grow_horizontal = 2
 grow_vertical = 2
 text = "Exit"
@@ -278,7 +293,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="OptionsPanel" type="Panel" parent="." unique_id=1156664572]
-visible = false
 layout_mode = 0
 offset_left = 640.00006
 offset_top = 368.0
@@ -303,6 +317,7 @@ offset_top = 40.0
 offset_right = 392.0
 offset_bottom = 63.0
 text = "Music"
+label_settings = SubResource("LabelSettings_l4mxc")
 
 [node name="MusicSlider" type="HSlider" parent="OptionsPanel/Control" unique_id=1203988330]
 layout_mode = 0
@@ -321,6 +336,7 @@ offset_top = 40.0
 offset_right = 64.0
 offset_bottom = 63.0
 text = "VFX"
+label_settings = SubResource("LabelSettings_5faoh")
 
 [node name="SFXSlider" type="HSlider" parent="OptionsPanel/Control" unique_id=648862292]
 layout_mode = 0
@@ -339,13 +355,14 @@ offset_top = 128.0
 offset_right = 150.0
 offset_bottom = 151.0
 text = "Window Mode"
+label_settings = SubResource("LabelSettings_bky6r")
 
 [node name="WindowModeOption" type="OptionButton" parent="OptionsPanel/Control" unique_id=144462130]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 160.0
-offset_right = 206.0
-offset_bottom = 182.0
+offset_left = 38.399952
+offset_top = 172.8
+offset_right = 268.79993
+offset_bottom = 194.8
 
 [node name="CloseButton" type="Button" parent="OptionsPanel/Control" unique_id=520441793]
 layout_mode = 0
@@ -390,10 +407,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = -16.0
-offset_right = 42.0
-offset_bottom = 16.0
+offset_left = -43.200035
+offset_top = -16.5
+offset_right = 45.799965
+offset_bottom = 28.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Close"

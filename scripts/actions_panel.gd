@@ -3,6 +3,41 @@ class_name ActionsPanel
 
 @export var parent: BattleScene
 
+func _ready() -> void:
+	_setup_button_hover($VBoxContainer/AttackButton)
+	_setup_button_hover($VBoxContainer/DefendButton)
+	_setup_button_hover($VBoxContainer/ItemsButton)
+	_setup_button_hover($VBoxContainer/RunButton)
+
+
+func _setup_button_hover(button:Button)-> void:
+	
+	var left_divider = button.get_node("LeftDivider")
+	var right_divider = button.get_node("RightDivider")
+	
+	left_divider.modulate.a = 0.0
+	right_divider.modulate.a = 0.0
+	
+	button.mouse_entered.connect(func(): _animate_dividers(left_divider, right_divider, true))
+	button.mouse_exited.connect(func(): _animate_dividers(left_divider, right_divider, false))
+	button.button_down.connect(func(): _animate_dividers(left_divider, right_divider, true))
+	button.button_up.connect(func(): _animate_dividers(left_divider, right_divider, button.is_hovered()))
+	
+	
+
+func _animate_dividers(left: Control, right: Control, is_hover: bool) -> void:
+	var target_alpha: float = 1.0 if is_hover else 0.0
+	
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(left, "modulate:a", target_alpha, 0.2)
+	tween.tween_property(right, "modulate:a", target_alpha, 0.2)
+	
+
+
 func _on_run_button_pressed():
 	parent.actions_panel.hide()
 	parent.add_history_entry("Got away safely!")
@@ -14,9 +49,14 @@ func _on_attack_button_pressed() -> void:
 	parent.actions_panel.hide()
 	
 	parent.question_popup.ask_question()
-	var is_correct = await parent.question_popup.question_answered
+	var result = await parent.question_popup.question_answered
+	var is_correct = result[0]
+	var explanation = result[1]
 	
 	if not is_correct:
+		
+		parent.information_popup.show_info(explanation)
+		await parent.information_popup.info_closed
 		parent.add_history_entry("[color=red]Wrong answer! Your attack missed![/color]")
 		await get_tree().create_timer(0.6).timeout
 		parent.enemy_turn()
@@ -70,10 +110,14 @@ func _on_defend_button_pressed() -> void:
 	self.hide()
 	
 	parent.question_popup.ask_question()
-	var is_correct = await parent.question_popup.question_answered
+	var result = await parent.question_popup.question_answered
+	var is_correct = result[0]
+	var explanation = result[1]
 	
 	if not is_correct:
-		parent.add_history_entry("[color=yellow]Wrong answer! Your defense failed![/color]")
+		parent.information_popup.show_info(explanation)
+		await parent.information_popup.info_closed
+		parent.add_history_entry("[color=red]Wrong answer! Your defence failed![/color]")
 		await get_tree().create_timer(0.6).timeout
 		parent.enemy_turn()
 		return
@@ -84,3 +128,7 @@ func _on_defend_button_pressed() -> void:
 	await get_tree().create_timer(0.4).timeout
 	
 	parent.enemy_turn()
+
+
+func _on_items_button_pressed() -> void:
+	pass # Replace with function body.

@@ -65,7 +65,6 @@
 [ext_resource type="Texture2D" uid="uid://c05i2bbyjolo" path="res://assets/sprites/enemy/Werewolf/Werewolf-Hurt.png" id="57_uhy05"]
 [ext_resource type="Texture2D" uid="uid://dkjuxhn3uktbv" path="res://assets/ui/Default/Panel/panel-021.png" id="64_ch1u8"]
 [ext_resource type="Script" uid="uid://c4nok16kpmgp7" path="res://scripts/information_popup.gd" id="64_foast"]
-[ext_resource type="FontFile" uid="uid://b75jj2mkcohfm" path="res://assets/fonts/Perpetua-Regular.otf" id="66_y4f6p"]
 
 [sub_resource type="Resource" id="Resource_lv4so"]
 script = ExtResource("2_yahae")
@@ -2592,7 +2591,7 @@ position = Vector2(124, 70)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_go4uh")
 animation = &"slime"
-frame_progress = 0.63770705
+frame_progress = 0.79440224
 flip_h = true
 
 [node name="EnemyAnimations" type="AnimationPlayer" parent="EnemyContainer/Enemy" unique_id=518054040]
@@ -2665,19 +2664,13 @@ item_pool = Array[ExtResource("8_f4pi3")]([ExtResource("10_v7i3o")])
 anchor_mode = 0
 
 [node name="InformationPopup" type="NinePatchRect" parent="." unique_id=449389657]
-self_modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -319.99994
-offset_top = -284.0
-offset_right = -13.929871
-offset_bottom = -71.0
-grow_horizontal = 2
-grow_vertical = 2
+visible = false
+modulate = Color(0, 0, 0, 0.8980392)
+layout_mode = 0
+offset_left = 640.00006
+offset_top = 256.00003
+offset_right = 946.00006
+offset_bottom = 469.00003
 scale = Vector2(2.09, 2.09)
 texture = ExtResource("64_ch1u8")
 patch_margin_left = 20
@@ -2699,29 +2692,16 @@ layout_mode = 2
 
 [node name="InfoLabel" type="RichTextLabel" parent="InformationPopup/MarginContainer/Control" unique_id=89217024]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = 19.138725
-offset_top = 57.416275
-offset_right = 478.68903
-offset_bottom = 453.19202
+anchor_bottom = 1.0
 grow_horizontal = 2
-scale = Vector2(0.35, 0.35)
-pivot_offset = Vector2(0, -60)
+grow_vertical = 2
 size_flags_vertical = 3
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("66_y4f6p")
-theme_override_font_sizes/normal_font_size = 60
-bbcode_enabled = true
-text = "merhaba"
-fit_content = true
 
 [node name="CloseButton" type="Button" parent="InformationPopup/MarginContainer/Control" unique_id=212675212]
 layout_mode = 0
-offset_left = 137.79903
-offset_top = 179.90433
-offset_right = 199.04305
-offset_bottom = 215.63
-scale = Vector2(0.75, 0.75)
-text = "Close
-"
+offset_left = 127.272705
+offset_top = 136.84212
+offset_right = 187.2727
+offset_bottom = 161.84212

@@ -1,82 +1,540 @@
 [
-  {
-	"question": "Which phase of the SDLC focuses on gathering business requirements?",
-	"choices": [
-	  "System Design",
-	  "System Analysis",
-	  "System Implementation",
-      "System Maintenance"
-	],
-	"answer": "System Analysis"
-  },
-  {
-	"question": "Which UML diagram is used to model the sequential flow of interactions between objects?",
-	"choices": [
-	  "Class Diagram",
-	  "Sequence Diagram",
-	  "Use Case Diagram",
-      "Deployment Diagram"
-	],
-	"answer": "Sequence Diagram"
-  },
-  {
-	"question": "Which software development methodology emphasizes iterative progress and adaptability?",
-	"choices": [
-	  "Waterfall",
-	  "Agile",
-	  "V-Model",
-      "Spiral"
-	],
-	"answer": "Agile"
-  },
-  {
-	"question": "In an Entity-Relationship Diagram (ERD), what shape typically represents an entity?",
-	"choices": [
-	  "Oval",
-	  "Diamond",
-	  "Rectangle",
-      "Triangle"
-	],
-	"answer": "Rectangle"
-  },
-  {
-	"question": "What type of testing ensures that individual software components work correctly in isolation?",
-	"choices": [
-	  "Integration Testing",
-	  "System Testing",
-	  "Unit Testing",
-      "Acceptance Testing"
-	],
-	"answer": "Unit Testing"
-  },
-  {
-	"question": "In software design, which combination represents a best practice for system architecture?",
-	"choices": [
-	  "High coupling and high cohesion",
-	  "Low coupling and low cohesion",
-	  "High coupling and low cohesion",
-      "Low coupling and high cohesion"
-	],
-	"answer": "Low coupling and high cohesion"
-  },
-  {
-	"question": "What does 'API' stand for in system design?",
-	"choices": [
-	  "Application Programming Interface",
-	  "Advanced Process Integration",
-	  "Application Process Instruction",
-      "Automated Program Interface"
-	],
-	"answer": "Application Programming Interface"
-  },
-  {
-	"question": "Which document formally describes the software to be built, serving as an agreement between developers and clients?",
-	"choices": [
-	  "API Documentation",
-	  "Software Requirements Specification (SRS)",
-	  "Feasibility Study",
-      "Test Plan"
-	],
-	"answer": "Software Requirements Specification (SRS)"
-  }
+	{"question": "What is a computer application (app)?",
+	  "options": [
+		"A planned undertaking that produces some definite result",
+		"A set of interrelated components that collects, processes, stores, and provides as output the information needed to complete business tasks",
+		"A computer software program that executes on a computing device to carry out a specific set of functions",
+        "An approach to system development where the system is grown piece by piece"
+	  ],
+	  "correct": 2,
+	  "explanation": "Computer application is a computer software program that executes on a computing device to carry out a specific set of functions"
+	},
+	{
+	  "question": "What is systems analysis?",
+	  "options": [
+		"activities to build, test, and integrate system components",
+		"activities to understand and specify what an information system should accomplish",
+		"activities to deploy and maintain an information system",
+        "activities to define and describe in detail the system that solves the need"
+	  ],
+	  "correct": 1,
+	  "explanation": "System analysis is activities to understand and specify what an information system should accomplish"
+	},
+	{
+	  "question": "What does Agile development emphasize?",
+	  "options": [
+		"Detailed documentation before coding",
+		"Only database design",
+		"Flexibility to anticipate new requirements during development",
+        "Completing the entire system at once"
+	  ],
+	  "correct": 2,
+	  "explanation": "Agile development emphasizes flexibility to anticipate new requirements during development"
+	},
+	{
+	  "question": "What are functional requirements?",
+	  "options": [
+		"Other system characteristics",
+		"Specific restrictions for hardware and software",
+		"The activities the system must perform",
+        "Automatic updates and enhancement methods"
+	  ],
+	  "correct": 2,
+	  "explanation": "Functonal requirements are the activities the system must perform"
+	},
+	{
+	  "question": "What are non-functional requirements?",
+	  "options": [
+		"Other system characteristics Constraints and performance goals",
+		"Graphical workflow descriptions",
+		"The activities the system must perform",
+        "Business uses and functions the users carry out"
+	  ],
+	  "correct": 0,
+	  "explanation": "Non-functional requirements are other system characteristics Constraints and performance goals"
+	},
+	{
+	  "question": "What is UML?",
+	  "options": [
+		"A standard graphical modeling symbols/terminology used for information systems",
+		"A testing methodology",
+		"A database management language",
+        "A project management technique"
+	  ],
+	  "correct": 0,
+	  "explanation": "UML is standard graphical modeling symbols/terminology used for information systems"
+	},
+	{
+	  "question": "What is a user story?",
+	  "options": [
+		"A one-sentence description of a work-related task done by a user to achieve some goal or result",
+		"A database schema for the system",
+		"A diagram showing system architecture",
+        "A testing procedure document"
+	  ],
+	  "correct": 0,
+	  "explanation": "A user story briefly describes a task performed by a user in order to accomplish a specific goal or benefit."
+	},
+	{
+	  "question": "What is a use case?",
+	  "options": [
+		"A hardware configuration",
+		"A report generated by management",
+		"A software testing method",
+        "An activity that the system performs usually in response to a request by a user"
+	  ],
+	  "correct": 3,
+	  "explanation": "Use cases represent system functions that are normally triggered by user requests and define functional requirements."
+	},
+	{
+	  "question": "How should each use case be named?",
+	  "options": [
+		"Using adjective-adverb format",
+		"Using noun only",
+		"Using Verb-Noun",
+        "Using system code names"
+	  ],
+	  "correct": 2,
+	  "explanation": "The presentation states that use cases should follow a Verb-Noun naming format to clearly describe the action performed."
+	},
+	{
+	  "question": "What is the problem domain?",
+	  "options": [
+		"The database schema of the system",
+		"The entire IT infrastructure of a company",
+		"The specific area within the scope of the new system",
+        "The user interface design"
+	  ],
+	  "correct": 2,
+	  "explanation": "Problem domain refers to the specific area that the new system is intended to address and operate within."
+	},
+	{
+	  "question": "What are “things” in the problem domain modeled as?",
+	  "options": [
+		"User interfaces",
+		"Test cases",
+		"Algorithms",
+        "Domain classes"
+	  ],
+	  "correct": 3,
+	  "explanation": "Items users work with and need to remember are represented as domain classes in modeling."
+	},
+	{
+	  "question": "What does an attribute represent in a domain class?",
+	  "options": [
+		"A relationship between two classes",
+		"A system boundary",
+		"A piece of information about each instance of the class",
+        "A method in a class"
+	  ],
+	  "correct": 2,
+	  "explanation": "An attribute describes a single piece of data associated with each instance of a class."
+	},
+	{
+	  "question": "What is a class?",
+	  "options": [
+		"A user interface component",
+		"A type of thing used to describe a collection of objects",
+		"A database table only",
+        "A specific instance of data"
+	  ],
+	  "correct": 1,
+	  "explanation": "A class is a general category or type that groups similar objects together in the system."
+	},
+	{
+	  "question": "What is the purpose of a fully developed use case description?",
+	  "options": [
+		"To define system architecture",
+		"To provide detailed information about a use case including flow and conditions",
+		"To replace UML diagrams",
+        "To design the database schema"
+	  ],
+	  "correct": 1,
+	  "explanation": "Fully developed use case descriptions include detailed elements such as actors, preconditions, postconditions, and the flow of activities to explain how the use case operates."
+	},
+	{
+	  "question": "What does an activity diagram primarily show?",
+	  "options": [
+		"Flow of activities",
+		"Class inheritance",
+		"Database relationships",
+        "System hardware"
+	  ],
+	  "correct": 0,
+	  "explanation": "Activity diagrams are used to represent the sequence and flow of activities within a use case or business process."
+	},
+	{
+	  "question": "What does CRUD stand for?",
+	  "options": [
+		"Control Read Use Delete",
+		"Create Read Update Delete",
+		"Control Run Update Deploy",
+        "Create Run Use Design"
+	  ],
+	  "correct": 1,
+	  "explanation": "CRUD refers to the four fundamental operations performed on data: create, read, update, and delete."
+	},
+	{
+	  "question": "What does an SSD (System Sequence Diagram) show?",
+	  "options": [
+		"Only database tables",
+		"Only internal algorithms",
+		"Only system architecture",
+        "Inputs and outputs as messages between actor and system"
+	  ],
+	  "correct": 3,
+	  "explanation": "System sequence diagrams illustrate how actors interact with the system by sending messages and receiving outputs."
+	},
+	{
+	  "question": "What is the main purpose of systems design?",
+	  "options": [
+		"To test the system",
+		"To define how the system will be configured and constructed",
+		"To maintain the system",
+        "To collect requirements from users"
+	  ],
+	  "correct": 1,
+	  "explanation": "Systems design focuses on specifying how the system will be built by organizing and structuring the solution components."
+	},
+	{
+	  "question": "What does systems analysis focus on?",
+	  "options": [
+		"How the system will be implemented",
+		"How users will test the system",
+		"How to deploy the system",
+        "What is required from the system"
+	  ],
+	  "correct": 3,
+	  "explanation": "Analysis activities determine what the system must accomplish, while design determines how it will be implemented."
+	},
+	{
+	  "question": "What is an application component?",
+	  "options": [
+		"A database table",
+		"A well-defined unit of software that performs specific functions",
+		"A network device",
+        "A testing module"
+	  ],
+	  "correct": 1,
+	  "explanation": "Application components are modular pieces of software that perform defined tasks within the system."
+	},
+	{
+	  "question": "What is the purpose of input controls?",
+	  "options": [
+		"To generate reports",
+		"To manage network traffic",
+		"To prevent invalid or erroneous data from entering the system",
+        "To improve UI design"
+	  ],
+	  "correct": 2,
+	  "explanation": "Input controls ensure that incorrect or invalid data is not accepted into the system."
+	},
+	{
+	  "question": "What is a server in a modern information system?",
+	  "options": [
+		"A programming language",
+		"A database schema",
+		"A personal device used by a single user",
+        "A system that manages shared resources and provides access to them"
+	  ],
+	  "correct": 3,
+	  "explanation": "A server is responsible for managing shared resources and allowing users or other systems to access those resources."
+	},
+	{
+	  "question": "What is a LAN?",
+	  "options": [
+		"A small network for a single site",
+		"A web browser",
+		"A database system",
+        "A global internet backbone"
+	  ],
+	  "correct": 0,
+	  "explanation": "A Local Area Network (LAN) is a network that connects devices within a limited geographic area such as a building or office."
+	},
+	{
+	  "question": "What is a URL?",
+	  "options": [
+		"An identifier used to locate a resource on the web",
+		"A type of database",
+		"A programming tool",
+        "A network cable"
+	  ],
+	  "correct": 0,
+	  "explanation": "A URL is used to identify and locate a specific resource available on the web."
+	},
+	{
+	  "question": "What does HTTP define?",
+	  "options": [
+		"Programming syntax",
+		"Format and transfer of web documents",
+		"User interface design",
+        "Database structure"
+	  ],
+	  "correct": 1,
+	  "explanation": "HTTP defines how web documents are formatted and transmitted between systems."
+	},
+	{
+	  "question": "What is user interface (UI)?",
+	  "options": [
+		"A hardware component",
+		"A network protocol",
+		"A database design",
+        "A dialog between the user and the system"
+	  ],
+	  "correct": 3,
+	  "explanation": "The user interface represents the interaction between the user and the system, where inputs and outputs are exchanged."
+	},
+	{
+	  "question": "What is usability?",
+	  "options": [
+		"The speed of a network",
+		"The ease with which users can interact with a system",
+		"The size of a database",
+        "The number of features"
+	  ],
+	  "correct": 1,
+	  "explanation": "Usability refers to how effectively and efficiently users can use the system to achieve their goals."
+	},
+	{
+	  "question": "What does affordance mean in UI design?",
+	  "options": [
+		"The appearance of an object suggests its function",
+		"The network connection",
+		"The system speed",
+        "The database structure"
+	  ],
+	  "correct": 0,
+	  "explanation": "Affordance means that the design of an interface element should indicate how it can be used."
+	},
+	{
+	  "question": "What is a storyboard in UI design?",
+	  "options": [
+		"A database schema",
+		"A network diagram",
+		"A security model",
+        "A sequence of sketches showing screen interactions"
+	  ],
+	  "correct": 3,
+	  "explanation": "Storyboards show the sequence of screens and interactions to represent how a user completes tasks step by step."
+	},
+	{
+	  "question": "How many Core Processes does every SDLC contain?",
+	  "options": [
+		"4",
+		"8",
+		"6",
+        "3"
+	  ],
+	  "correct": 2,
+	  "explanation": "The SDLC model presented in the slides consists of six core processes that guide system development from beginning to deployment."
+	},
+	{
+	  "question": "What artefact does Core Process 1 produce in the RMO project?",
+	  "options": [
+		"Use Case Diagram",
+		"Work Breakdown Structure",
+		"System Vision Document",
+        "Database Schema"
+	  ],
+	  "correct": 2,
+	  "explanation": "Core Process 1 focuses on identifying the problem and documenting the project objectives inside the System Vision Document."
+	},
+	{
+	  "question": "Which fact-finding technique involves an analyst watching users perform their actual work tasks?",
+	  "options": [
+		"Document Review",
+		"Interview",
+		"Observation",
+        "Survey"
+	  ],
+	  "correct": 2,
+	  "explanation": "Observation is used when analysts watch and document business procedures in order to understand how work is actually performed."
+	},
+	{
+	  "question": "In the RMO project, which subsystem does Iteration 1 target?",
+	  "options": [
+		"Product Information Subsystem",
+		"Supplier Information Subsystem",
+		"Payment Processing Subsystem",
+        "Reporting Subsystem"
+	  ],
+	  "correct": 1,
+	  "explanation": "The first iteration in the RMO project was planned around the Supplier Information Subsystem because it was considered small and straightforward."
+	},
+	{
+	  "question": "Which FURPS category covers response time and throughput requirements?",
+	  "options": [
+		"Reliability",
+		"Performance",
+		"Usability",
+        "Security"
+	  ],
+	  "correct": 1,
+	  "explanation": "The Performance category in FURPS focuses on system efficiency measures such as response time, processing speed, and throughput."
+	},
+	{
+	  "question": "Which elicitation technique is best suited for geographically distributed stakeholders who cannot meet in person?",
+	  "options": [
+		"Document Review",
+		"Interview",
+		"Process Observation",
+        "Questionnaire"
+	  ],
+	  "correct": 3,
+	  "explanation": "Questionnaires are useful when many stakeholders are located in different places because information can be collected without face-to-face meetings."
+	},
+	{
+	  "question": "User stories follow which format in agile requirements engineering?",
+	  "options": [
+		"\"Given [ctx] when [action] then [result]\"",
+		"\"As a role, I want [X] so that [Y]\"",
+		"\"The system shall [function]\"",
+        "\"FR-001:[function description]\""
+	  ],
+	  "correct": 1,
+	  "explanation": "The slides define the standard user story template as: “As a <role> I want to <goal> so that <benefit>.”"
+	},
+	{
+	  "question": "What is an Elementary Business Process (EBP)?",
+	  "options": [
+		"A management report",
+		"A UML case diagram",
+		"Any system function",
+        "A task by one person in one place responding to one event"
+	  ],
+	  "correct": 3,
+	  "explanation": "An elementary business process is defined as a single task performed by one person at one location in response to a business event."
+	},
+	{
+	  "question": "What does the standard user story template capture?",
+	  "options": [
+		"Function, input, and output",
+		"Role, goal, and benefit (As a/I want/So that)",
+		"Actor, event, and use case",
+        "Role, technology, and cost"
+	  ],
+	  "correct": 1,
+	  "explanation": "The user story format identifies who performs the action, what they want to achieve, and why it is valuable."
+	},
+	{
+	  "question": "What does the automation boundary in a use case diagram represent?",
+	  "options": [
+		"The project scope document",
+		"The network firewall",
+		"The line dividing computerised system from external environment",
+        "The testing boundary"
+	  ],
+	  "correct": 2,
+	  "explanation": "The automation boundary separates the computerized part of the system from external actors and the surrounding environment."
+	},
+	{
+	  "question": "The noun technique begins by listing all _____ from use-case narratives and system descriptions.",
+	  "options": [
+		"Adjectives",
+		"Actors",
+		"Nouns",
+        "Verbs"
+	  ],
+	  "correct": 2,
+	  "explanation": "The noun technique starts by identifying all nouns in use cases, inputs, outputs, and descriptions to discover potential domain classes."
+	},
+	{
+	  "question": "Which diagram uses rectangles connected by lines to show data entities and their relationships?",
+	  "options": [
+		"Entity-Relationship Diagram",
+		"Domain Model Class Diagram",
+		"State Machine Diagram",
+        "Use Case Diagram"
+	  ],
+	  "correct": 0,
+	  "explanation": "Entity-Relationship Diagrams (ERDs) represent data entities and their relationships, typically using rectangles and connectors."
+	},
+	{
+	  "question": "A bathroom cannot exist independently of the house it belongs to. This is an example of?",
+	  "options": [
+		"Composition",
+		"Generalization",
+		"Association",
+        "Aggregation"
+	  ],
+	  "correct": 0,
+	  "explanation": "Composition describes a strong whole-part relationship where the part cannot exist independently of the whole."
+	},
+	{
+	  "question": "What is the key difference between aggregation and composition?",
+	  "options": [
+		"In aggregation parts can exist independently; in composition they cannot",
+		"Composition allows multiple parents",
+		"Composition uses a hollow diamond; aggregation uses a filled diamond",
+        "Aggregation is stronger than composition"
+	  ],
+	  "correct": 0,
+	  "explanation": "Aggregation allows components to exist separately, while composition represents a stronger relationship where parts depend entirely on the whole."
+	},
+	{
+	  "question": "The {key} annotation on a UML attribute denotes what?",
+	  "options": [
+		"The attribute is inherited",
+		"The attribute is optional",
+		"The attribute is the primary identifier",
+        "The attribute is a foreign key"
+	  ],
+	  "correct": 2,
+	  "explanation": "A key attribute uniquely identifies each instance of a class and serves as its primary identifier."
+	},
+	{
+	  "question": "In the SSD message notation, what does an asterisk (*) before a message name indicate?",
+	  "options": [
+		"The message returns a value to the actor",
+		"The message is repeating (loop)",
+		"The message is conditional on a guard",
+        "The message goes from system back to actor"
+	  ],
+	  "correct": 1,
+	  "explanation": "In system sequence diagrams, the asterisk symbol indicates that a message is repeated, representing a loop in the interaction flow."
+	},
+	{
+	  "question": "What is the relationship between a Use Case Scenario and a Use Case?",
+	  "options": [
+		"A scenario is one specific execution path through a use case",
+		"A scenario is a separate, independent use case",
+		"A use case is contained within a scenario",
+        "A scenario only documents exception conditions of a use case"
+	  ],
+	  "correct": 0,
+	  "explanation": "A use case can include multiple scenarios, each representing a specific path or variation of how the interaction unfolds."
+	},
+	{
+	  "question": "Which UML frame type encloses optional messages with a single branch and no else path?",
+	  "options": [
+		"Alt Frame",
+		"Ref Frame",
+		"Loop Frame",
+        "Opt Frame"
+	  ],
+	  "correct": 3,
+	  "explanation": "The opt frame is used to show optional behavior where messages occur only if a condition is true, without an alternative branch."
+	},
+	{
+	  "question": "What distinguishes Preconditions from Postconditions in a use case description?",
+	  "options": [
+		"Preconditions must be true before execution; postconditions must be true after success",
+		"Preconditions describe exceptions; postconditions describe the normal flow",
+		"Preconditions are optional; postconditions are mandatory",
+        "Preconditions describe actor goals; postconditions describe system goals"
+	  ],
+	  "correct": 0,
+	  "explanation": "Preconditions define the required state before a use case begins, while postconditions describe the expected state after it completes."
+	},
+	{
+	  "question": "What is the full SSD message syntax per UML?",
+	  "options": [
+		"[condition] returnValue := messageName(params)",
+		"messageName(params) : return",
+		"actor.send(messageName)",
+        "messageName(params)"
+	  ],
+	  "correct": 0,
+	  "explanation": "SSD message notation includes a condition, a return value assignment, and a message name with parameters to define system interaction."
+	}
 ]
