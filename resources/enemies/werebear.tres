@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseEnemy" format=3 uid="uid://b1ru2d8ng8rtb"]
+
+[ext_resource type="Script" uid="uid://dvndcxk4aetrq" path="res://resources/BaseEnemy.gd" id="1_vjmsb"]
+
+[resource]
+script = ExtResource("1_vjmsb")
+name = "werebear"
+health = 23
+damage = 10
+reward = 12
+metadata/_custom_type_script = "uid://dvndcxk4aetrq"

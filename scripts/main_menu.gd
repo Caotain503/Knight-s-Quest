@@ -131,8 +131,8 @@ func _close_options_panel() -> void:
 func _setup_window_mode_options():
 	var option_button = $OptionsPanel/Control/WindowModeOption
 	option_button.clear()
-	option_button.add_item("Pencereli")     
-	option_button.add_item("Tam Ekran")     
+	option_button.add_item("Windowed")     
+	option_button.add_item("Fullscreen")     
 
 
 func _on_music_changed(value: float):

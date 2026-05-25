@@ -28,11 +28,11 @@ func _on_attack_button_pressed() -> void:
 	parent.current_enemy_health = max(0, parent.current_enemy_health - GameState.damage)
 	parent.set_health(parent.get_node("EnemyContainer/EnemyHealthBar"), parent.current_enemy_health, parent.enemy.health)
 	
-	parent.player_animations.play("attack")
-	await parent.player_animations.animation_finished
+	parent.player.play("attack")
+	await parent.play_enemy_animation("hurt")
 	parent.enemy_animations.play("enemy_damaged")
 	await parent.enemy_animations.animation_finished
-	parent.player_animations.play("idle")
+	parent.player.play("idle")
 	
 	parent.add_history_entry("[color=green]You've dealt %d damage to the %s![/color]" % [GameState.damage, parent.enemy.name])
 	await get_tree().create_timer(0.4).timeout
@@ -42,11 +42,18 @@ func _on_attack_button_pressed() -> void:
 		parent.add_history_entry("[b]%s was defeated. You earned %d coins![/b]" % [parent.enemy.name, parent.enemy.reward])
 		await get_tree().create_timer(0.8).timeout
 		
+		
+		var enemy_sprite=parent.get_node("EnemyContainer/Enemy")
+		var death_anim =parent.enemy.name + "_death"
+		if enemy_sprite.sprite_frames.has_animation(death_anim):
+			enemy_sprite.play(death_anim)
+			await enemy_sprite.animation_finished
+		
+		
 		parent.enemy_animations.play("enemy_death")
 		await parent.enemy_animations.animation_finished
 		
-		parent.player_animations.play("disappear")
-		await parent.player_animations.animation_finished
+		await parent.player_exit()
 		
 		parent.shop_ui.reroll_shop()
 		parent.shop_ui.show()
