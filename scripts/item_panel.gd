@@ -12,8 +12,7 @@ var item: BaseItem
 func _ready() -> void:
 	item_label.text = item.name
 	price_label.text = "%d$" % item.price
-	if GameState.coins < item.price:
-		buy_button.disabled = true
+	buy_button.disabled = GameState.coins < item.price
 	buy_button.pressed.connect(_on_buy_button_pressed)
 
 
@@ -24,12 +23,11 @@ func _on_buy_button_pressed() -> void:
 		BaseItem.ItemType.SWORD_UPGRADE:
 			GameState.upgrade_damage(5)
 		BaseItem.ItemType.ARMOR_UPGRADE:
-			GameState.upgrade_armor(5)
+			GameState.upgrade_max_health(5)
 		BaseItem.ItemType.HEALTH_POTION:
 			GameState.add_potion()
 		BaseItem.ItemType.KNOWLEDGE_SCROLL:
 			GameState.add_scroll()
 	
 	item_bought.emit()
-	
-	buy_button.disabled=true
+	buy_button.disabled = GameState.coins < item.price

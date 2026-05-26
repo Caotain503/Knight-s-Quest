@@ -2588,6 +2588,29 @@ offset_bottom = 140.63995
 grow_vertical = 2
 scale = Vector2(1.041, 1.015)
 
+[node name="InventoryDisplay" type="HBoxContainer" parent="PlayerContainer" unique_id=336775522]
+layout_mode = 0
+offset_left = 16.330444
+offset_top = -78.81775
+offset_right = 304.33044
+offset_bottom = 49.18225
+
+[node name="PotionIcon" type="TextureRect" parent="PlayerContainer/InventoryDisplay" unique_id=1180923227]
+layout_mode = 2
+texture = ExtResource("10_y4f6p")
+
+[node name="ScrollIcon" type="TextureRect" parent="PlayerContainer/InventoryDisplay" unique_id=1039687911]
+layout_mode = 2
+texture = ExtResource("10_y4f6p")
+
+[node name="PotionCount" type="Label" parent="PlayerContainer/InventoryDisplay" unique_id=1241588299]
+layout_mode = 2
+text = "0"
+
+[node name="ScrollCount" type="Label" parent="PlayerContainer/InventoryDisplay" unique_id=581659335]
+layout_mode = 2
+text = "0"
+
 [node name="PlayerHealthBar" type="ProgressBar" parent="PlayerContainer" unique_id=1756717593]
 visible = false
 custom_minimum_size = Vector2(0, 40)
@@ -2630,25 +2653,6 @@ theme_override_font_sizes/font_size = 29
 text = "HP: 30/30"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PlayerContainer/PlayerHealthBar" unique_id=336775522]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PotionIcon" type="TextureRect" parent="PlayerContainer/PlayerHealthBar/HBoxContainer" unique_id=1180923227]
-layout_mode = 2
-texture = ExtResource("10_y4f6p")
-
-[node name="ScrollIcon" type="TextureRect" parent="PlayerContainer/PlayerHealthBar/HBoxContainer" unique_id=1039687911]
-layout_mode = 2
-texture = ExtResource("10_y4f6p")
-
-[node name="PotionCount" type="Label" parent="PlayerContainer/PlayerHealthBar/HBoxContainer" unique_id=1241588299]
-layout_mode = 2
-
-[node name="ScrollCount" type="Label" parent="PlayerContainer/PlayerHealthBar/HBoxContainer" unique_id=581659335]
-layout_mode = 2
 
 [node name="Player" type="AnimatedSprite2D" parent="PlayerContainer" unique_id=1029757653]
 position = Vector2(100, 70)
@@ -2720,7 +2724,7 @@ position = Vector2(124, 70)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_go4uh")
 animation = &"slime"
-frame_progress = 0.19553092
+frame_progress = 0.78025955
 flip_h = true
 
 [node name="EnemyAnimations" type="AnimationPlayer" parent="EnemyContainer/Enemy" unique_id=518054040]

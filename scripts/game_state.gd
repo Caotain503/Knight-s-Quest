@@ -1,5 +1,7 @@
 extends Node
 
+signal inventory_changed
+
 var current_health: int = 30
 var max_health = 30
 var damage = 20
@@ -26,18 +28,22 @@ func heal(amount:int)->int:
 
 func add_potion(count:int=1)->void:
 	potion_count += count
+	inventory_changed.emit()
 
 func add_scroll(count:int=1)->void:
 	scroll_count += count
+	inventory_changed.emit()
 
 func use_potion()->int:
 	if potion_count<=0:
 		return 0
 	potion_count -=1
+	inventory_changed.emit()
 	return heal(20)
 
 func use_scroll()->bool:
 	if scroll_count<=0:
 		return false
 	scroll_count -= 1
+	inventory_changed.emit()
 	return true

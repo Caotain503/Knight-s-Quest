@@ -43,6 +43,8 @@ func _ready() -> void:
 	
 	if Engine.is_editor_hint():
 		return
+	GameState.inventory_changed.connect(_update_inventory_display)
+	_update_inventory_display()
 	
 	portal.visible=false
 	
@@ -70,6 +72,11 @@ func _ready() -> void:
 	show_actions_panel()
 	
 
+
+func _update_inventory_display() -> void:
+	$PlayerContainer/InventoryDisplay/PotionCount.text = str(GameState.potion_count)
+	$PlayerContainer/InventoryDisplay/ScrollCount.text = str(GameState.scroll_count)
+
 func add_history_entry(text: String) -> void:
 	var timed_msg = timed_message_scene.instantiate()
 	timed_msg.text = text
@@ -77,6 +84,8 @@ func add_history_entry(text: String) -> void:
 	
 	await get_tree().process_frame
 	message_scroll.scroll_vertical = int(message_scroll.get_v_scroll_bar().max_value)
+	
+
 
 func spawn_enemy() -> void:
 	
@@ -152,6 +161,14 @@ func enemy_turn() -> void:
 	show_actions_panel()
 
 
+
+
+
+
+#-------------------------------Animasyon bölgesi------------------------------------------------------------------
+
+
+
 func player_exit() -> void:
 	portal.flip_h = true
 	var portal_position = player_start_position + Vector2(1200, -30)
@@ -177,7 +194,6 @@ func player_exit() -> void:
 	portal.visible = false
 	
 	player.visible = true
-	
 
 func player_enter() -> void:
 	portal.flip_h = false
@@ -210,16 +226,6 @@ func player_enter() -> void:
 	player.play("idle")
 	
 	portal.visible = false
-	
-
-
-
-
-
-
-
-
-#ANİMASYONLAR
 
 func play_enemy_animation(anim_type: String) ->void:
 	var enemy_sprite =$EnemyContainer/Enemy
@@ -231,7 +237,6 @@ func play_enemy_animation(anim_type: String) ->void:
 		enemy_sprite.play(enemy.name)
 	else:
 		push_warning("Animation Not Found" + anim_name)
-
 
 func show_actions_panel() -> void:
 	heal_used_this_turn=false
@@ -247,7 +252,6 @@ func show_actions_panel() -> void:
 	
 	tween.tween_property(actions_panel, "scale", Vector2(1.0, 1.0), 0.35)
 	tween.tween_property(actions_panel, "modulate:a", 1.0, 0.25)
-	
 
 func hide_actions_panel() -> void:
 	actions_panel.pivot_offset = actions_panel.size / 2
@@ -289,4 +293,3 @@ func _animate_button(label: Label, hover_texture: Control, is_hover: bool,animat
 	if animate_label:
 		var target_color: Color = Color(0.0, 0.0, 0.0, 1.0) if is_hover else Color.WHITE
 		tween.tween_property(label, "modulate", target_color, 0.25)
-	

@@ -18,12 +18,7 @@ func clear_items() -> void:
 func reroll_shop() -> void:
 	clear_items()
 	
-	for i in range(item_pool.size()):
-		if item_pool[i] == null:
-			print("Slot ", i, ": NULL")
-		else:
-			print("Slot ", i, ": ", item_pool[i].name)
-	clear_items()
+	
 	
 	if item_pool.is_empty():
 		push_error("ShopUI: item_pool is empty!")
@@ -42,3 +37,5 @@ func _on_button_pressed() -> void:
 
 func _on_item_bought() -> void:
 	coin_label.text = "X %d" % GameState.coins
+	for item_panel in item_panel_container.get_children():
+		item_panel.buy_button.disabled = GameState.coins < item_panel.item.price
