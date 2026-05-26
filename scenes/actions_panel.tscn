@@ -99,6 +99,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_dg4ev")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tsafd")
 
 [node name="ButtonLabel" type="Label" parent="VBoxContainer/AttackButton" unique_id=685923732]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -156,6 +157,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_dg4ev")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tsafd")
 
 [node name="ButtonLabel" type="Label" parent="VBoxContainer/DefendButton" unique_id=1715254477]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -199,7 +201,7 @@ mouse_filter = 2
 texture = ExtResource("4_sags7")
 flip_h = true
 
-[node name="ItemsButton" type="Button" parent="VBoxContainer" unique_id=211995333]
+[node name="HealButton" type="Button" parent="VBoxContainer" unique_id=211995333]
 custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_vertical = 3
@@ -211,19 +213,20 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_yb7jo")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_dg4ev")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tsafd")
 
-[node name="ButtonLabel" type="Label" parent="VBoxContainer/ItemsButton" unique_id=625646495]
+[node name="ButtonLabel" type="Label" parent="VBoxContainer/HealButton" unique_id=625646495]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Items"
+text = "Heal"
 label_settings = SubResource("LabelSettings_2boiw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LeftDivider" type="TextureRect" parent="VBoxContainer/ItemsButton" unique_id=1822770971]
+[node name="LeftDivider" type="TextureRect" parent="VBoxContainer/HealButton" unique_id=1822770971]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 4
@@ -237,7 +240,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("4_sags7")
 
-[node name="RightDivider" type="TextureRect" parent="VBoxContainer/ItemsButton" unique_id=1044388410]
+[node name="RightDivider" type="TextureRect" parent="VBoxContainer/HealButton" unique_id=1044388410]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 6
@@ -268,6 +271,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_dg4ev")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tsafd")
 
 [node name="ButtonLabel" type="Label" parent="VBoxContainer/RunButton" unique_id=1880560756]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -313,5 +317,5 @@ flip_h = true
 
 [connection signal="pressed" from="VBoxContainer/AttackButton" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/DefendButton" to="." method="_on_defend_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ItemsButton" to="." method="_on_items_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HealButton" to="." method="_on_heal_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/RunButton" to="." method="_on_run_button_pressed"]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseItem" format=3 uid="uid://4vpw2x4ckgnk"]
+
+[ext_resource type="Script" uid="uid://b2nn0otjvfiql" path="res://resources/BaseItem.gd" id="1_xgy4w"]
+
+[resource]
+script = ExtResource("1_xgy4w")
+name = "Knowledge Scroll"
+price = 25
+type = 3
+description = "Skip a question and learn the answer"
+metadata/_custom_type_script = "uid://b2nn0otjvfiql"

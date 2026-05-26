@@ -19,6 +19,17 @@ func _ready() -> void:
 
 func _on_buy_button_pressed() -> void:
 	GameState.coins -= item.price
+	
+	match item.type:
+		BaseItem.ItemType.SWORD_UPGRADE:
+			GameState.upgrade_damage(5)
+		BaseItem.ItemType.ARMOR_UPGRADE:
+			GameState.upgrade_armor(5)
+		BaseItem.ItemType.HEALTH_POTION:
+			GameState.add_potion()
+		BaseItem.ItemType.KNOWLEDGE_SCROLL:
+			GameState.add_scroll()
+	
 	item_bought.emit()
-	if GameState.coins < item.price:
-		buy_button.disabled = true
+	
+	buy_button.disabled=true

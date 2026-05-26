@@ -18,15 +18,21 @@ func clear_items() -> void:
 func reroll_shop() -> void:
 	clear_items()
 	
+	for i in range(item_pool.size()):
+		if item_pool[i] == null:
+			print("Slot ", i, ": NULL")
+		else:
+			print("Slot ", i, ": ", item_pool[i].name)
+	clear_items()
+	
 	if item_pool.is_empty():
-		push_error("ShopUI: item_pool is empty! Fill it in the Inspector.")
+		push_error("ShopUI: item_pool is empty!")
 		return
 	
 	coin_label.text = "X %d" % GameState.coins
-	for i in range(3):
-		randomize()
+	for item_resource in item_pool:
 		var item_panel: ItemPanel = item_panel_scene.instantiate()
-		item_panel.item = item_pool.pick_random()
+		item_panel.item = item_resource
 		item_panel.item_bought.connect(_on_item_bought)
 		item_panel_container.add_child(item_panel)
 

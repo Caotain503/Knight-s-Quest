@@ -28,7 +28,7 @@ func _ready():
 	
 	
 
-
+#BUTTON HOVER ANİMASYONLARI.
 
 func _setup_button_hover(button: Button,animate_label:bool=false) -> void:
 	var hover_texture = button.get_node("HoverTexture")
@@ -66,9 +66,6 @@ func _on_start_pressed():
 	get_tree().change_scene_to_file("res://scenes/battle.tscn")
 
 
-
-
-
 func _on_options_button_pressed():
 	_open_options_panel()
 
@@ -79,6 +76,7 @@ func _on_exit_pressed():
 
 func _on_close_options():
 	_close_options_panel()
+
 
 func _open_options_panel() -> void:
 	var panel = $OptionsPanel

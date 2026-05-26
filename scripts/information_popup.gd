@@ -8,7 +8,6 @@ signal info_closed
 
 @export var popup_scale: float = 2.0
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	close_button.pressed.connect(_on_close_pressed)
 	visible = false

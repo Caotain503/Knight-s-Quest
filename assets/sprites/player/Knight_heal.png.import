@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfp1qfvrprsvo"
-path="res://.godot/imported/town_square.jpeg-b87b26081dadfda9a68219cda3c7de3b.ctex"
+uid="uid://ei8q3r2qgiqn"
+path="res://.godot/imported/Knight_heal.png-2f95c8fb5efcfbe0987791d10a21b070.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/town_square.jpeg"
-dest_files=["res://.godot/imported/town_square.jpeg-b87b26081dadfda9a68219cda3c7de3b.ctex"]
+source_file="res://assets/sprites/player/Knight_heal.png"
+dest_files=["res://.godot/imported/Knight_heal.png-2f95c8fb5efcfbe0987791d10a21b070.ctex"]
 
 [params]
 

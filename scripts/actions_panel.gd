@@ -6,7 +6,7 @@ class_name ActionsPanel
 func _ready() -> void:
 	_setup_button_hover($VBoxContainer/AttackButton)
 	_setup_button_hover($VBoxContainer/DefendButton)
-	_setup_button_hover($VBoxContainer/ItemsButton)
+	_setup_button_hover($VBoxContainer/HealButton)
 	_setup_button_hover($VBoxContainer/RunButton)
 
 
@@ -130,5 +130,41 @@ func _on_defend_button_pressed() -> void:
 	parent.enemy_turn()
 
 
-func _on_items_button_pressed() -> void:
-	pass # Replace with function body.
+func _on_heal_button_pressed() -> void:
+	
+	if parent.heal_used_this_turn:
+		parent.add_history_entry("[color=yellow]You can only use 1 heal per turn![/color]")
+		return
+	if GameState.potion_count<=0:
+		parent.add_history_entry("[color=yellow]No potion available![/color]")
+		return
+	if GameState.current_health>=GameState.max_health:
+		parent.add_history_entry("[color=yellow]Your health is already full![/color]")
+		return
+	
+	parent.heal_used_this_turn = true
+	
+	_fade_actions_panel(false)
+	await get_tree().create_timer(0.25).timeout
+	
+	var healed_amount = GameState.use_potion()
+	parent.current_player_health = GameState.current_health
+	
+	parent.player.play("heal")
+	parent.set_health(parent.get_node("PlayerContainer/PlayerHealthBar"), GameState.current_health, GameState.max_health)
+	await parent.player.animation_finished
+	parent.player.play("idle")
+	
+	
+	parent.add_history_entry("[color=green]You healed %d HP![/color]" % healed_amount)
+	
+	
+	_fade_actions_panel(true)
+
+
+func _fade_actions_panel(fade_in: bool) -> void:
+	var target_alpha: float = 1.0 if fade_in else 0.0
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "modulate:a", target_alpha, 0.25)

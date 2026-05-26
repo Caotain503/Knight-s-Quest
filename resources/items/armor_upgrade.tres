@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseItem" format=3 uid="uid://b47xur8b88cbs"]
+
+[ext_resource type="Script" uid="uid://b2nn0otjvfiql" path="res://resources/BaseItem.gd" id="1_3d1xf"]
+
+[resource]
+script = ExtResource("1_3d1xf")
+name = "Armor Upgrade"
+price = 20
+type = 1
+description = "Increases your max health by 5"
+metadata/_custom_type_script = "uid://b2nn0otjvfiql"

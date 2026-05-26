@@ -1,7 +1,12 @@
 [gd_scene format=3 uid="uid://ltd4nf3dcmxe"]
 
 [ext_resource type="Script" uid="uid://xty8ephhdxsg" path="res://scripts/shop_ui.gd" id="1_fs6yy"]
+[ext_resource type="Script" uid="uid://b2nn0otjvfiql" path="res://resources/BaseItem.gd" id="2_bidp2"]
+[ext_resource type="Resource" uid="uid://c3sktqr3lmywx" path="res://resources/items/health_potion.tres" id="3_obwu6"]
 [ext_resource type="Texture2D" uid="uid://d1cl3n868rn5f" path="res://assets/sprites/coin_icon.png" id="4_crtus"]
+[ext_resource type="Resource" uid="uid://ccou0m74wcak1" path="res://resources/items/sword_upgrade.tres" id="4_t3xdf"]
+[ext_resource type="Resource" uid="uid://b47xur8b88cbs" path="res://resources/items/armor_upgrade.tres" id="5_0yw5g"]
+[ext_resource type="Resource" uid="uid://4vpw2x4ckgnk" path="res://resources/items/knowledge_scroll.tres" id="6_s287r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b84dc"]
 bg_color = Color(0.87005675, 0.8024677, 0.9595656, 1)
@@ -53,6 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_18xnp")
 script = ExtResource("1_fs6yy")
+item_pool = Array[ExtResource("2_bidp2")]([ExtResource("5_0yw5g"), ExtResource("3_obwu6"), ExtResource("4_t3xdf"), ExtResource("6_s287r")])
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1892559779]
 layout_mode = 1

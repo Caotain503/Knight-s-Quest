@@ -43,7 +43,6 @@ func _on_choice_selected(selected_index:int) -> void:
 	self.hide()
 	var is_correct = (selected_index == current_question["correct"])
 	var explanation = current_question["explanation"]
-	print("Sinyal gönderiliyor - correct: ", is_correct, " explanation: ", explanation)
 	question_answered.emit(is_correct,explanation)
 
 func load_json(path: String) -> Variant:

@@ -94,6 +94,7 @@ texture = ExtResource("3_7la6k")
 expand_mode = 1
 
 [node name="Logo" type="TextureRect" parent="." unique_id=27111846]
+texture_filter = 2
 layout_mode = 0
 offset_left = 672.0
 offset_top = 184.0
@@ -103,6 +104,7 @@ texture = ExtResource("4_7la6k")
 expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=295462847]
+texture_filter = 2
 layout_mode = 0
 offset_left = 800.0
 offset_top = 632.0
@@ -154,6 +156,7 @@ patch_margin_right = 16
 patch_margin_bottom = 16
 
 [node name="ButtonLabel" type="Label" parent="VBoxContainer/StartButton" unique_id=827231386]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -215,6 +218,7 @@ patch_margin_right = 16
 patch_margin_bottom = 16
 
 [node name="ButtonLabel" type="Label" parent="VBoxContainer/OptionsButton" unique_id=800702889]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -275,6 +279,7 @@ patch_margin_right = 16
 patch_margin_bottom = 16
 
 [node name="ButtonLabel" type="Label" parent="VBoxContainer/ExitButton" unique_id=1627294726]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -311,6 +316,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MusicLabel" type="Label" parent="OptionsPanel/Control" unique_id=95406818]
+texture_filter = 2
 layout_mode = 0
 offset_left = 336.0
 offset_top = 40.0
@@ -330,6 +336,7 @@ step = 0.01
 value = 1.0
 
 [node name="SFXLabel" type="Label" parent="OptionsPanel/Control" unique_id=1432247691]
+texture_filter = 2
 layout_mode = 0
 offset_left = 32.0
 offset_top = 40.0
@@ -349,6 +356,7 @@ step = 0.01
 value = 1.0
 
 [node name="WindowModeLabel" type="Label" parent="OptionsPanel/Control" unique_id=355579342]
+texture_filter = 2
 layout_mode = 0
 offset_left = 32.0
 offset_top = 128.0
@@ -401,6 +409,7 @@ patch_margin_right = 24
 patch_margin_bottom = 24
 
 [node name="ButtonLabel" type="Label" parent="OptionsPanel/Control/CloseButton" unique_id=122735013]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

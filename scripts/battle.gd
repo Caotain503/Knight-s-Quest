@@ -35,7 +35,7 @@ var available_enemies: Array[BaseEnemy] = []
 var current_player_health: int = 0
 var current_enemy_health: int = 0
 var is_defending: bool = false
-
+var heal_used_this_turn:bool=false
 
 func _ready() -> void:
 	set_health($EnemyContainer/EnemyHealthBar, enemy.health, enemy.health)
@@ -45,6 +45,11 @@ func _ready() -> void:
 		return
 	
 	portal.visible=false
+	
+	
+	_setup_button_hover($InformationPopup/MarginContainer/Control/CloseButton, true)
+	
+	
 	
 	set_health($PlayerContainer/PlayerHealthBar, GameState.current_health, GameState.max_health)
 	current_player_health = GameState.current_health
@@ -97,8 +102,6 @@ func spawn_enemy() -> void:
 	await get_tree().create_timer(0.6).timeout
 	show_actions_panel()
 
-
-
 func set_health(progress_bar: ProgressBar, health: int, max_health: int):
 	progress_bar.max_value = max_health
 	progress_bar.get_node("Label").text = "HP: %d/%d" % [health, max_health]
@@ -107,8 +110,6 @@ func set_health(progress_bar: ProgressBar, health: int, max_health: int):
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(progress_bar, "value", health, 0.5)
-
-
 
 func enemy_turn() -> void:
 	add_history_entry("[color=yellow]%s[/color] launches at you fiercely!" % enemy.name)
@@ -130,6 +131,7 @@ func enemy_turn() -> void:
 		await get_tree().create_timer(0.3).timeout
 		
 		current_player_health = max(0, current_player_health - enemy.damage)
+		GameState.current_health=current_player_health
 		set_health($PlayerContainer/PlayerHealthBar, current_player_health, GameState.max_health)
 		
 		player.play("hurt")
@@ -148,7 +150,6 @@ func enemy_turn() -> void:
 		await get_tree().create_timer(0.5).timeout
 	
 	show_actions_panel()
-
 
 
 func player_exit() -> void:
@@ -212,6 +213,14 @@ func player_enter() -> void:
 	
 
 
+
+
+
+
+
+
+#ANİMASYONLAR
+
 func play_enemy_animation(anim_type: String) ->void:
 	var enemy_sprite =$EnemyContainer/Enemy
 	var anim_name = enemy.name + "_" + anim_type
@@ -225,6 +234,7 @@ func play_enemy_animation(anim_type: String) ->void:
 
 
 func show_actions_panel() -> void:
+	heal_used_this_turn=false
 	actions_panel.pivot_offset = actions_panel.size / 2
 	actions_panel.scale = Vector2(0.8, 0.8)
 	actions_panel.modulate.a = 0.0
@@ -252,3 +262,31 @@ func hide_actions_panel() -> void:
 	
 	await tween.finished
 	actions_panel.visible = false
+
+func _setup_button_hover(button: Button,animate_label:bool=false) -> void:
+	var hover_texture = button.get_node("HoverTexture")
+	var label = button.get_node("ButtonLabel")
+	
+	hover_texture.modulate.a = 0.0
+	
+	
+	
+	button.mouse_entered.connect(func(): _animate_button(label, hover_texture, true,animate_label))
+	button.mouse_exited.connect(func(): _animate_button(label, hover_texture, false,animate_label))
+	button.button_down.connect(func(): _animate_button(label, hover_texture, true,animate_label))
+	button.button_up.connect(func(): _animate_button(label, hover_texture, button.is_hovered(),animate_label))
+
+func _animate_button(label: Label, hover_texture: Control, is_hover: bool,animate_label:bool) -> void:
+	var target_alpha: float = 1.0 if is_hover else 0.0
+	
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(hover_texture, "modulate:a", target_alpha, 0.25)
+	
+	if animate_label:
+		var target_color: Color = Color(0.0, 0.0, 0.0, 1.0) if is_hover else Color.WHITE
+		tween.tween_property(label, "modulate", target_color, 0.25)
+	
