@@ -2576,6 +2576,7 @@ texture = ExtResource("7_mpb26")
 expand_mode = 1
 
 [node name="PlayerContainer" type="Control" parent="." unique_id=291532044]
+visible = false
 layout_mode = 1
 anchor_left = 0.071
 anchor_top = 0.51100004
@@ -2670,6 +2671,7 @@ animation = &"portal_disappear"
 offset = Vector2(0, -17)
 
 [node name="EnemyContainer" type="Control" parent="." unique_id=1462632130]
+visible = false
 layout_mode = 1
 anchor_left = 0.69600004
 anchor_top = 0.54800004
@@ -2724,13 +2726,14 @@ position = Vector2(124, 70)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_go4uh")
 animation = &"slime"
-frame_progress = 0.78025955
+frame_progress = 0.39420015
 flip_h = true
 
 [node name="EnemyAnimations" type="AnimationPlayer" parent="EnemyContainer/Enemy" unique_id=518054040]
 libraries/ = SubResource("AnimationLibrary_4k1nj")
 
 [node name="ActionsPanel" parent="." unique_id=165960886 node_paths=PackedStringArray("parent") instance=ExtResource("18_dd63g")]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2759,6 +2762,7 @@ visible = false
 layout_mode = 1
 
 [node name="MessagePanel" type="Panel" parent="." unique_id=880618563]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -2789,13 +2793,13 @@ theme_override_constants/separation = 0
 alignment = 2
 
 [node name="ShopUI" parent="." unique_id=290908397 instance=ExtResource("7_f4pi3")]
-visible = false
 layout_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=947797040]
 anchor_mode = 0
 
 [node name="InformationPopup" type="NinePatchRect" parent="." unique_id=449389657]
+visible = false
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
