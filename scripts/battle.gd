@@ -60,6 +60,9 @@ func _ready() -> void:
 	actions_panel.hide()
 	question_popup.hide()
 	information_popup.hide()
+	shop_ui.hide()
+	game_over_ui.hide()
+	
 	
 	player_start_position = player.position
 	await player_enter()

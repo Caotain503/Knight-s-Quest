@@ -2576,7 +2576,6 @@ texture = ExtResource("7_mpb26")
 expand_mode = 1
 
 [node name="PlayerContainer" type="Control" parent="." unique_id=291532044]
-visible = false
 layout_mode = 1
 anchor_left = 0.071
 anchor_top = 0.51100004
@@ -2671,7 +2670,6 @@ animation = &"portal_disappear"
 offset = Vector2(0, -17)
 
 [node name="EnemyContainer" type="Control" parent="." unique_id=1462632130]
-visible = false
 layout_mode = 1
 anchor_left = 0.69600004
 anchor_top = 0.54800004
@@ -2726,7 +2724,7 @@ position = Vector2(124, 70)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_go4uh")
 animation = &"slime"
-frame_progress = 0.39420015
+frame_progress = 0.179827
 flip_h = true
 
 [node name="EnemyAnimations" type="AnimationPlayer" parent="EnemyContainer/Enemy" unique_id=518054040]
