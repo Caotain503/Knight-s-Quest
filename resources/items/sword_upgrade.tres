@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_ayoph")
 name = "Sword Upgrade"
-price = 20
+price = 40
 description = "Increases your damage by 5"
 metadata/_custom_type_script = "uid://b2nn0otjvfiql"
