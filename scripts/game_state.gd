@@ -52,7 +52,7 @@ func use_scroll()->bool:
 func reset() -> void:
 	current_health = 30
 	max_health = 30
-	damage = 20
+	damage = 5
 	coins = 0
 	potion_count = 0
 	scroll_count = 0
