@@ -6,9 +6,11 @@ signal shop_closed
 const item_panel_scene = preload("res://scenes/item_panel.tscn")
 
 @export var item_pool: Array[BaseItem]
+@export var parent: BattleScene
 
 @onready var item_panel_container: HBoxContainer = $MarginContainer/ItemPanelContainer
 @onready var coin_label: Label = $HBoxContainer/CoinLabel
+
 
 func clear_items() -> void:
 	for item_panel in item_panel_container.get_children():
@@ -17,8 +19,6 @@ func clear_items() -> void:
 
 func reroll_shop() -> void:
 	clear_items()
-	
-	
 	
 	if item_pool.is_empty():
 		push_error("ShopUI: item_pool is empty!")
@@ -36,6 +36,7 @@ func _on_button_pressed() -> void:
 	hide()
 
 func _on_item_bought() -> void:
+	parent.play_sfx("snd_buyitem.wav")
 	coin_label.text = "X %d" % GameState.coins
 	for item_panel in item_panel_container.get_children():
 		item_panel.buy_button.disabled = GameState.coins < item_panel.item.price

@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bj7lw3ydpaxxk" path="res://assets/ui/Double/Border/panel-border-008.png" id="9_2nypq"]
 [ext_resource type="FontFile" uid="uid://b75jj2mkcohfm" path="res://assets/fonts/Perpetua-Regular.otf" id="9_bky6r"]
 [ext_resource type="Texture2D" uid="uid://dc0l74y3he3ju" path="res://assets/ui/Double/Transparent border/panel-transparent-border-009.png" id="10_bky6r"]
+[ext_resource type="AudioStream" uid="uid://bxs2i53rqs6lp" path="res://assets/music/music_set2_menu.mp3" id="12_bky6r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_826wr"]
 shader = ExtResource("2_ow34m")
@@ -341,7 +342,7 @@ offset_left = 32.0
 offset_top = 40.0
 offset_right = 64.0
 offset_bottom = 63.0
-text = "VFX"
+text = "SFX"
 label_settings = SubResource("LabelSettings_5faoh")
 
 [node name="SFXSlider" type="HSlider" parent="OptionsPanel/Control" unique_id=648862292]
@@ -425,3 +426,7 @@ text = "Close"
 label_settings = SubResource("LabelSettings_7la6k")
 horizontal_alignment = 3
 vertical_alignment = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=223010524]
+stream = ExtResource("12_bky6r")
+autoplay = true
