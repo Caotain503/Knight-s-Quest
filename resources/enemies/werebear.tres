@@ -7,5 +7,5 @@ script = ExtResource("1_vjmsb")
 name = "werebear"
 health = 120
 damage = 10
-reward = 80
+reward = 240
 metadata/_custom_type_script = "uid://dvndcxk4aetrq"

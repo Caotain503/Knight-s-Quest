@@ -7,5 +7,5 @@ script = ExtResource("1_bfosw")
 name = "orc"
 health = 20
 damage = 8
-reward = 20
+reward = 60
 metadata/_custom_type_script = "uid://dvndcxk4aetrq"

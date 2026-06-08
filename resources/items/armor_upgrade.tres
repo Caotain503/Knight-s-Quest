@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_3d1xf")
 name = "Armor Upgrade"
-price = 20
+price = 15
 type = 1
-description = "Increases your max health by 5"
+description = "Increases your maximum health by 5."
 metadata/_custom_type_script = "uid://b2nn0otjvfiql"
