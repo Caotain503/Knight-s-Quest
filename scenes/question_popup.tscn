@@ -49,3 +49,9 @@ texture_filter = 2
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
+
+[node name="UseScrollButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1957205672]
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Use Scroll"

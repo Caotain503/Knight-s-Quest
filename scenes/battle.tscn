@@ -2726,7 +2726,7 @@ position = Vector2(124, 70)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_go4uh")
 animation = &"slime"
-frame_progress = 0.52798384
+frame_progress = 0.7444417
 flip_h = true
 
 [node name="EnemyAnimations" type="AnimationPlayer" parent="EnemyContainer/Enemy" unique_id=518054040]
@@ -2748,7 +2748,7 @@ grow_horizontal = 2
 grow_vertical = 2
 parent = NodePath("..")
 
-[node name="QuestionPopup" parent="." unique_id=1645113938 instance=ExtResource("19_fpf3k")]
+[node name="QuestionPopup" parent="." unique_id=1645113938 node_paths=PackedStringArray("parent") instance=ExtResource("19_fpf3k")]
 visible = false
 layout_mode = 1
 offset_left = -352.00006
@@ -2756,6 +2756,7 @@ offset_top = -204.0
 offset_right = 248.0
 offset_bottom = 100.0
 scale = Vector2(1.175, 1.175)
+parent = NodePath("..")
 
 [node name="GameOverUI" parent="." unique_id=2010137967 instance=ExtResource("6_4k1nj")]
 layout_mode = 1

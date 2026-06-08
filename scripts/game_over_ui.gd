@@ -6,9 +6,11 @@ class_name GameOverUI
 @onready var label: Label = $Label
 @onready var button: Button = $Button
 @onready var animations: AnimationPlayer = $AnimationPlayer
+@onready var button2:Button= $Button2
 
 func _ready() -> void:
 	button.pressed.connect(_on_retry)
+	button2.pressed.connect(_on_main_menu)
 	visible = false
 
 func appear() -> void:
@@ -29,3 +31,7 @@ func disappear() -> void:
 
 func _on_retry() -> void:
 	disappear()
+
+
+func _on_main_menu() -> void:
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")

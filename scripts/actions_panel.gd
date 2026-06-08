@@ -42,7 +42,7 @@ func _on_run_button_pressed():
 	parent.actions_panel.hide()
 	parent.add_history_entry("Got away safely!")
 	await get_tree().create_timer(0.8).timeout
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 
 
 func _on_attack_button_pressed() -> void:
