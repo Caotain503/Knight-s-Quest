@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_mr6qb")
 name = "Health Potion"
-price = 20
+price = 10
 type = 2
 description = "Restores 20 HP when used."
 metadata/_custom_type_script = "uid://b2nn0otjvfiql"
