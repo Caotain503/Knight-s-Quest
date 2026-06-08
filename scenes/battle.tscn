@@ -2732,7 +2732,7 @@ position = Vector2(124, 70)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_go4uh")
 animation = &"slime"
-frame_progress = 0.0907857
+frame_progress = 0.1872235
 flip_h = true
 
 [node name="EnemyAnimations" type="AnimationPlayer" parent="EnemyContainer/Enemy" unique_id=518054040]
@@ -2923,7 +2923,7 @@ parameters/looping = true
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="." unique_id=1809815014]
 bus = &"SFX"
 
-[node name="AmbiancePlayer" type="AudioStreamPlayer" parent="." unique_id=594419317]
+[node name="Ambiance" type="AudioStreamPlayer" parent="." unique_id=594419317]
 stream = ExtResource("74_nha6o")
 volume_db = 0.1
 autoplay = true
