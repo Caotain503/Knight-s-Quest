@@ -69,6 +69,7 @@ func _on_attack_button_pressed() -> void:
 	parent.set_health(parent.get_node("EnemyContainer/EnemyHealthBar"), parent.current_enemy_health, parent.enemy.health)
 	
 	parent.player.play("attack")
+	parent.play_sfx("hero_unsheath.wav")
 	await parent.play_enemy_animation("hurt")
 	parent.enemy_animations.play("enemy_damaged")
 	await parent.enemy_animations.animation_finished
@@ -151,6 +152,7 @@ func _on_heal_button_pressed() -> void:
 	parent.current_player_health = GameState.current_health
 	
 	parent.player.play("heal")
+	parent.play_sfx("heal_potion.wav")
 	parent.set_health(parent.get_node("PlayerContainer/PlayerHealthBar"), GameState.current_health, GameState.max_health)
 	await parent.player.animation_finished
 	parent.player.play("idle")

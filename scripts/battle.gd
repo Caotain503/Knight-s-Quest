@@ -17,11 +17,13 @@ const timed_message_scene: PackedScene = preload("res://scenes/timed_message.tsc
 @onready var information_popup = $InformationPopup
 @onready var timed_messages: VBoxContainer = $MessagePanel/ScrollContainer/Messages
 @onready var message_scroll: ScrollContainer = $MessagePanel/ScrollContainer
+@onready var sfx_player: AudioStreamPlayer = $SfxPlayer
 
 
 var player_start_position: Vector2  
 var available_enemies: Array[BaseEnemy] = []
 var enemy_index:int=0
+
 
 @export var enemy_pool: Array[BaseEnemy]
 @export var enemy: BaseEnemy:
@@ -73,6 +75,9 @@ func _ready() -> void:
 	add_history_entry("Round %d — A wild [b]%s[/b] appears!" % [GameState.current_round, enemy.name])
 	await get_tree().create_timer(0.6).timeout
 	show_actions_panel()
+
+
+
 
 func _update_inventory_display() -> void:
 	$PlayerContainer/InventoryDisplay/PotionCount.text = str(GameState.potion_count)
@@ -142,6 +147,7 @@ func enemy_turn() -> void:
 		is_defending = false
 		
 		player.play("defend")
+		play_sfx("hero_parry.wav")
 		play_enemy_animation("attack")
 		enemy_animations.play("mini_shake")
 		await enemy_animations.animation_finished
@@ -157,6 +163,7 @@ func enemy_turn() -> void:
 		GameState.current_health=current_player_health
 		set_health($PlayerContainer/PlayerHealthBar, current_player_health, GameState.max_health)
 		
+		play_sfx("snd_hurt1.wav")
 		player.play("hurt")
 		enemy_animations.play("camera_shake")
 		await enemy_animations.animation_finished
@@ -191,6 +198,7 @@ func player_exit() -> void:
 	portal.visible = true
 	
 	portal.play("portal_appear")
+	play_sfx("portal_open3.wav")
 	await portal.animation_finished
 	portal.play("portal_idle")
 	
@@ -206,6 +214,7 @@ func player_exit() -> void:
 	player.visible = false
 	
 	portal.play("portal_disappear")
+	play_sfx("portal_close2.wav")
 	await portal.animation_finished
 	portal.visible = false
 	
@@ -221,7 +230,9 @@ func player_enter() -> void:
 	portal.position = portal_position
 	portal.visible = true
 	
+	
 	portal.play("portal_appear")
+	play_sfx("portal_open3.wav")
 	await portal.animation_finished
 	portal.play("portal_idle")
 	
@@ -234,6 +245,7 @@ func player_enter() -> void:
 	
 	await get_tree().create_timer(1 ).timeout
 	portal.play("portal_disappear")
+	play_sfx("portal_close2.wav")
 	await walk_tween.finished
 	
 	
@@ -242,6 +254,7 @@ func player_enter() -> void:
 	player.play("idle")
 	
 	portal.visible = false
+	
 
 func play_enemy_animation(anim_type: String) ->void:
 	var enemy_sprite =$EnemyContainer/Enemy
@@ -289,8 +302,6 @@ func _setup_button_hover(button: Button,animate_label:bool=false) -> void:
 	
 	hover_texture.modulate.a = 0.0
 	
-	
-	
 	button.mouse_entered.connect(func(): _animate_button(label, hover_texture, true,animate_label))
 	button.mouse_exited.connect(func(): _animate_button(label, hover_texture, false,animate_label))
 	button.button_down.connect(func(): _animate_button(label, hover_texture, true,animate_label))
@@ -309,3 +320,8 @@ func _animate_button(label: Label, hover_texture: Control, is_hover: bool,animat
 	if animate_label:
 		var target_color: Color = Color(0.0, 0.0, 0.0, 1.0) if is_hover else Color.WHITE
 		tween.tween_property(label, "modulate", target_color, 0.25)
+
+func play_sfx(sound: StringName) -> void:
+	var file_path = "res://assets/sfx/" + sound
+	sfx_player.stream = load(file_path)
+	sfx_player.play()

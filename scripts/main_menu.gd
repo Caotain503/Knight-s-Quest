@@ -1,10 +1,6 @@
 extends Control
 
 
-
-
-
-
 func _ready():
 	$VBoxContainer/StartButton.pressed.connect(_on_start_pressed)
 	$VBoxContainer/OptionsButton.pressed.connect(_on_options_button_pressed)
@@ -26,7 +22,8 @@ func _ready():
 	_setup_button_hover($VBoxContainer/ExitButton)
 	_setup_button_hover($OptionsPanel/Control/CloseButton, true)
 	
-	
+	var bus_index = AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(0.3))
 
 #BUTTON HOVER ANİMASYONLARI.
 
