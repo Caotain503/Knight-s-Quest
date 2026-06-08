@@ -6,5 +6,4 @@
 script = ExtResource("1_2qp7k")
 name = "skeleton"
 damage = 16
-reward = 120
 metadata/_custom_type_script = "uid://dvndcxk4aetrq"
