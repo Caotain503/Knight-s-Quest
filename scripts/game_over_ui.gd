@@ -5,6 +5,7 @@ class_name GameOverUI
 
 @onready var label: Label = $Label
 @onready var button: Button = $Button
+@onready var round_label: Label =$RoundLabel
 @onready var animations: AnimationPlayer = $AnimationPlayer
 @onready var button2:Button= $Button2
 
@@ -17,6 +18,7 @@ func appear() -> void:
 	button.disabled = true
 	randomize()
 	label.text = death_messages.pick_random()
+	round_label.text = "You reached Round %d (Best: %d)" % [GameState.current_round, GameState.highest_round]
 	visible = true
 	animations.play("appear")
 	await animations.animation_finished

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cotffuyehugk2"]
 
 [ext_resource type="Script" uid="uid://cybpddli58qrf" path="res://scripts/game_over_ui.gd" id="1_ovv0w"]
+[ext_resource type="FontFile" uid="uid://b75jj2mkcohfm" path="res://assets/fonts/Perpetua-Regular.otf" id="2_y6ord"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovv0w"]
 bg_color = Color(0.09923177, 0.09923177, 0.0992317, 1)
@@ -128,7 +129,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 5
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("2_y6ord")
+theme_override_font_sizes/font_size = 38
 text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -181,3 +183,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_y6ord")
 theme_override_styles/hover = SubResource("StyleBoxFlat_lk38d")
 theme_override_styles/focus = SubResource("StyleBoxFlat_nbgkd")
 text = "Main Menu"
+
+[node name="RoundLabel" type="Label" parent="." unique_id=1776698668]
+layout_mode = 0
+offset_left = 936.0
+offset_top = 452.0
+offset_right = 976.0
+offset_bottom = 475.0
