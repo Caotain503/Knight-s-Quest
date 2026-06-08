@@ -158,3 +158,26 @@ text = "Try Again"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1988633859]
 libraries/ = SubResource("AnimationLibrary_y6ord")
+
+[node name="Button2" type="Button" parent="." unique_id=2059188586]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = 72.00012
+offset_right = 96.0
+offset_bottom = 122.00012
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_pressed_color = Color(0.009317499, 0.009317501, 0.009317499, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ovv0w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_y6ord")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lk38d")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nbgkd")
+text = "Main Menu"

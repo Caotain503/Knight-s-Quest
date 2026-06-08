@@ -47,3 +47,14 @@ func use_scroll()->bool:
 	scroll_count -= 1
 	inventory_changed.emit()
 	return true
+	
+
+func reset() -> void:
+	current_health = 30
+	max_health = 30
+	damage = 20
+	coins = 0
+	potion_count = 0
+	scroll_count = 0
+	player_items.clear()
+	inventory_changed.emit()

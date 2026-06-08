@@ -78,7 +78,7 @@ func _ready() -> void:
 
 func _update_inventory_display() -> void:
 	$PlayerContainer/InventoryDisplay/PotionCount.text = str(GameState.potion_count)
-	$PlayerContainer/InventoryDisplay/ScrollCount.text = str(GameState.scroll_count)
+
 
 func add_history_entry(text: String) -> void:
 	var timed_msg = timed_message_scene.instantiate()
@@ -155,6 +155,7 @@ func enemy_turn() -> void:
 			player.play("death")
 			await player.animation_finished
 			$PlayerContainer/PlayerHealthBar.visible=false
+			$PlayerContainer/InventoryDisplay.visible=false
 			game_over_ui.appear()
 			return
 		
@@ -184,6 +185,7 @@ func player_exit() -> void:
 	
 	
 	$PlayerContainer/PlayerHealthBar.visible=false
+	$PlayerContainer/InventoryDisplay.visible=false
 	player.play("walk")
 	var exit_tween = create_tween()
 	exit_tween.set_trans(Tween.TRANS_LINEAR)
@@ -225,7 +227,7 @@ func player_enter() -> void:
 	
 	
 	$PlayerContainer/PlayerHealthBar.visible=true
-	
+	$PlayerContainer/InventoryDisplay.visible=true
 	player.play("idle")
 	
 	portal.visible = false

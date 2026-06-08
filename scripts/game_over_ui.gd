@@ -24,6 +24,7 @@ func disappear() -> void:
 	button.disabled = true
 	animations.play("disappear")
 	await animations.animation_finished
+	GameState.reset()
 	get_tree().reload_current_scene()
 
 func _on_retry() -> void:

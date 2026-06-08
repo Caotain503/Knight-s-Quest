@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ltd4nf3dcmxe" path="res://scenes/shop_ui.tscn" id="7_f4pi3"]
 [ext_resource type="Resource" uid="uid://85o874julued" path="res://resources/enemies/skeleton_armored.tres" id="7_lv4so"]
 [ext_resource type="Texture2D" uid="uid://m73e6s3aiuxw" path="res://assets/backgrounds/forest_bg2.png" id="7_mpb26"]
-[ext_resource type="Texture2D" uid="uid://cm8pv7fxkf3e6" path="res://icon.svg" id="10_y4f6p"]
+[ext_resource type="Texture2D" uid="uid://dt7bq3lpvsvr5" path="res://assets/ui/health_ico.png" id="8_y4f6p"]
 [ext_resource type="Texture2D" uid="uid://ei8q3r2qgiqn" path="res://assets/sprites/player/Knight_heal.png" id="14_fhv2j"]
 [ext_resource type="FontFile" uid="uid://bawu5pkyjhc3a" path="res://assets/fonts/BoldPixels.ttf" id="15_1m01a"]
 [ext_resource type="Texture2D" uid="uid://fp5l08johdes" path="res://assets/sprites/player/Knight-Attack01.png" id="15_e50ek"]
@@ -2589,26 +2589,28 @@ grow_vertical = 2
 scale = Vector2(1.041, 1.015)
 
 [node name="InventoryDisplay" type="HBoxContainer" parent="PlayerContainer" unique_id=336775522]
+visible = false
 layout_mode = 0
-offset_left = 16.330444
-offset_top = -78.81775
-offset_right = 304.33044
-offset_bottom = 49.18225
+offset_left = 16.33
+offset_top = -55.382
+offset_right = 930.33
+offset_bottom = 626.71497
+scale = Vector2(0.04, 0.04)
+pivot_offset = Vector2(0.09, 0)
+pivot_offset_ratio = Vector2(0.005, 0)
+theme_override_constants/separation = 3
 
 [node name="PotionIcon" type="TextureRect" parent="PlayerContainer/InventoryDisplay" unique_id=1180923227]
 layout_mode = 2
-texture = ExtResource("10_y4f6p")
-
-[node name="ScrollIcon" type="TextureRect" parent="PlayerContainer/InventoryDisplay" unique_id=1039687911]
-layout_mode = 2
-texture = ExtResource("10_y4f6p")
+texture = ExtResource("8_y4f6p")
+expand_mode = 2
 
 [node name="PotionCount" type="Label" parent="PlayerContainer/InventoryDisplay" unique_id=1241588299]
 layout_mode = 2
-text = "0"
-
-[node name="ScrollCount" type="Label" parent="PlayerContainer/InventoryDisplay" unique_id=581659335]
-layout_mode = 2
+size_flags_vertical = 8
+size_flags_stretch_ratio = 1.1
+theme_override_fonts/font = ExtResource("66_y4f6p")
+theme_override_font_sizes/font_size = 700
 text = "0"
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="PlayerContainer" unique_id=1756717593]
@@ -2618,9 +2620,9 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 16.330448
-offset_top = -78.81773
+offset_top = -102.46306
 offset_right = 40.330444
-offset_bottom = -38.817734
+offset_bottom = -62.46306
 grow_horizontal = 2
 scale = Vector2(1.0313361, 1.0634869)
 theme_override_fonts/font = ExtResource("15_1m01a")
@@ -2683,10 +2685,10 @@ offset_bottom = 95.919495
 [node name="EnemyHealthBar" type="ProgressBar" parent="EnemyContainer" unique_id=1687239074]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 0
-offset_left = 28.0
-offset_top = -80.0
-offset_right = 220.0
-offset_bottom = -40.0
+offset_left = 32.0
+offset_top = -104.0
+offset_right = 224.0
+offset_bottom = -64.0
 theme_override_fonts/font = ExtResource("66_y4f6p")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/background = SubResource("StyleBoxFlat_a12nh")
@@ -2724,7 +2726,7 @@ position = Vector2(124, 70)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_go4uh")
 animation = &"slime"
-frame_progress = 0.179827
+frame_progress = 0.52798384
 flip_h = true
 
 [node name="EnemyAnimations" type="AnimationPlayer" parent="EnemyContainer/Enemy" unique_id=518054040]
@@ -2756,11 +2758,9 @@ offset_bottom = 100.0
 scale = Vector2(1.175, 1.175)
 
 [node name="GameOverUI" parent="." unique_id=2010137967 instance=ExtResource("6_4k1nj")]
-visible = false
 layout_mode = 1
 
 [node name="MessagePanel" type="Panel" parent="." unique_id=880618563]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -2791,6 +2791,7 @@ theme_override_constants/separation = 0
 alignment = 2
 
 [node name="ShopUI" parent="." unique_id=290908397 instance=ExtResource("7_f4pi3")]
+visible = false
 layout_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=947797040]
