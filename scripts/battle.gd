@@ -90,6 +90,9 @@ func add_history_entry(text: String) -> void:
 
 func spawn_enemy() -> void:
 	GameState.current_round += 1
+	GameState.update_highest_round()
+	
+	
 	
 	enemy_index = (enemy_index + 1) % enemy_pool.size()
 	var base_enemy: BaseEnemy = enemy_pool[enemy_index]

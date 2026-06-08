@@ -21,9 +21,9 @@ func _on_buy_button_pressed() -> void:
 	
 	match item.type:
 		BaseItem.ItemType.SWORD_UPGRADE:
-			GameState.upgrade_damage(5)
+			GameState.upgrade_damage()
 		BaseItem.ItemType.ARMOR_UPGRADE:
-			GameState.upgrade_max_health(5)
+			GameState.upgrade_max_health()
 		BaseItem.ItemType.HEALTH_POTION:
 			GameState.add_potion()
 		BaseItem.ItemType.KNOWLEDGE_SCROLL:
