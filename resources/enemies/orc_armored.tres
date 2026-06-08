@@ -5,4 +5,6 @@
 [resource]
 script = ExtResource("1_2rxuv")
 name = "orc_armored"
+damage = 8
+reward = 25
 metadata/_custom_type_script = "uid://dvndcxk4aetrq"

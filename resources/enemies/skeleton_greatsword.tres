@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_o6wwg")
 name = "skeleton_greatsword"
-health = 23
-damage = 10
-reward = 12
+health = 40
+damage = 16
+reward = 50
 metadata/_custom_type_script = "uid://dvndcxk4aetrq"
