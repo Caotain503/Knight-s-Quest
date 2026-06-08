@@ -4,7 +4,7 @@ signal inventory_changed
 
 var current_health: int = 30
 var max_health = 30
-var damage = 20
+var damage = 5
 var coins: int = 0
 
 var potion_count:int=0
@@ -52,7 +52,7 @@ func use_scroll()->bool:
 func reset() -> void:
 	current_health = 30
 	max_health = 30
-	damage = 20
+	damage = 5
 	coins = 0
 	potion_count = 0
 	scroll_count = 0

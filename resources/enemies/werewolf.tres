@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_spota")
 name = "werewolf"
-health = 23
-damage = 10
-reward = 12
+health = 80
+damage = 25
+reward = 100
 metadata/_custom_type_script = "uid://dvndcxk4aetrq"

@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_6pnpc")
 name = "slime"
-health = 20
-reward = 100
+health = 10
+damage = 4
+reward = 10
 metadata/_custom_type_script = "uid://dvndcxk4aetrq"
