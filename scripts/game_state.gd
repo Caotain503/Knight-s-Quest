@@ -12,6 +12,8 @@ var scroll_count:int=0
 
 var player_items:Array[BaseItem]
 
+var current_round: int=1
+
 
 func upgrade_damage(amount:int)->void:
 	damage += amount
@@ -56,5 +58,6 @@ func reset() -> void:
 	coins = 0
 	potion_count = 0
 	scroll_count = 0
+	current_round=1
 	player_items.clear()
 	inventory_changed.emit()

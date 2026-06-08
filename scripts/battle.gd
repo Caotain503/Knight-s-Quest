@@ -21,6 +21,7 @@ const timed_message_scene: PackedScene = preload("res://scenes/timed_message.tsc
 
 var player_start_position: Vector2  
 var available_enemies: Array[BaseEnemy] = []
+var enemy_index:int=0
 
 @export var enemy_pool: Array[BaseEnemy]
 @export var enemy: BaseEnemy:
@@ -38,20 +39,21 @@ var is_defending: bool = false
 var heal_used_this_turn:bool=false
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		set_health($EnemyContainer/EnemyHealthBar, enemy.health, enemy.health)
+		$EnemyContainer/Enemy.play(enemy.name)
+		return
+	
+	enemy_index = 0
+	enemy = _scale_enemy(enemy_pool[enemy_index], GameState.current_round)
 	set_health($EnemyContainer/EnemyHealthBar, enemy.health, enemy.health)
 	$EnemyContainer/Enemy.play(enemy.name)
 	
-	if Engine.is_editor_hint():
-		return
 	GameState.inventory_changed.connect(_update_inventory_display)
 	_update_inventory_display()
 	
-	portal.visible=false
-	
-	
+	portal.visible = false
 	_setup_button_hover($InformationPopup/MarginContainer/Control/CloseButton, true)
-	
-	
 	
 	set_health($PlayerContainer/PlayerHealthBar, GameState.current_health, GameState.max_health)
 	current_player_health = GameState.current_health
@@ -63,18 +65,14 @@ func _ready() -> void:
 	shop_ui.hide()
 	game_over_ui.hide()
 	
-	
 	player_start_position = player.position
 	await player_enter()
 	
-	$PlayerContainer/PlayerHealthBar.visible=true
+	$PlayerContainer/PlayerHealthBar.visible = true
 	
-	
-	add_history_entry("A wild [b]%s[/b] appears!" % enemy.name)
+	add_history_entry("Round %d — A wild [b]%s[/b] appears!" % [GameState.current_round, enemy.name])
 	await get_tree().create_timer(0.6).timeout
 	show_actions_panel()
-	
-
 
 func _update_inventory_display() -> void:
 	$PlayerContainer/InventoryDisplay/PotionCount.text = str(GameState.potion_count)
@@ -91,14 +89,11 @@ func add_history_entry(text: String) -> void:
 
 
 func spawn_enemy() -> void:
+	GameState.current_round += 1
 	
-	if available_enemies.is_empty():
-		available_enemies = enemy_pool.duplicate()
-	
-	var index = randi() % available_enemies.size()
-	enemy = available_enemies[index]
-	available_enemies.remove_at(index)
-	
+	enemy_index = (enemy_index + 1) % enemy_pool.size()
+	var base_enemy: BaseEnemy = enemy_pool[enemy_index]
+	enemy = _scale_enemy(base_enemy, GameState.current_round)
 	
 	$EnemyContainer/EnemyHealthBar.value = enemy.health
 	$EnemyContainer/EnemyHealthBar.max_value = enemy.health
@@ -110,9 +105,22 @@ func spawn_enemy() -> void:
 	enemy_animations.play("enemy_appear")
 	await enemy_animations.animation_finished
 	
-	add_history_entry("A wild [b]%s[/b] appears!" % enemy.name)
+	add_history_entry("Round %d — A wild [b]%s[/b] appears!" % [GameState.current_round, enemy.name])
 	await get_tree().create_timer(0.6).timeout
 	show_actions_panel()
+
+
+func _scale_enemy(base: BaseEnemy, round_num: int) -> BaseEnemy:
+	var scaled: BaseEnemy = base.duplicate()
+	var pool_size = enemy_pool.size()
+	var tier = (round_num - 1)/pool_size
+	scaled.health = int(base.health * (1.0 + 0.50 * tier))
+	scaled.damage = int(base.damage * (1.0 + 0.50 * tier))
+	scaled.reward = int(base.reward * (1.0 + 0.50 * tier))
+	return scaled
+
+
+
 
 func set_health(progress_bar: ProgressBar, health: int, max_health: int):
 	progress_bar.max_value = max_health

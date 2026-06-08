@@ -3,13 +3,19 @@
 [ext_resource type="Script" uid="uid://v045cn0n8x6v" path="res://scripts/battle.gd" id="1_th188"]
 [ext_resource type="Resource" uid="uid://cwkiwip8147qk" path="res://resources/enemies/slime.tres" id="2_lpir7"]
 [ext_resource type="Script" uid="uid://dvndcxk4aetrq" path="res://resources/BaseEnemy.gd" id="2_yahae"]
+[ext_resource type="Resource" uid="uid://rna5exjw10q5" path="res://resources/enemies/orc.tres" id="4_b446w"]
 [ext_resource type="Resource" uid="uid://cm1s13bdoyf4f" path="res://resources/enemies/skeleton.tres" id="5_kl6ie"]
 [ext_resource type="Resource" uid="uid://bkx3xgy88v7hj" path="res://resources/enemies/orc_armored.tres" id="6_1m01a"]
 [ext_resource type="PackedScene" uid="uid://cotffuyehugk2" path="res://scenes/game_over_ui.tscn" id="6_4k1nj"]
+[ext_resource type="Resource" uid="uid://b76ygg0umm2rj" path="res://resources/enemies/orc_elite.tres" id="6_nha6o"]
+[ext_resource type="Resource" uid="uid://c8gmjorawli85" path="res://resources/enemies/orc_rider.tres" id="7_a6jpw"]
 [ext_resource type="PackedScene" uid="uid://ltd4nf3dcmxe" path="res://scenes/shop_ui.tscn" id="7_f4pi3"]
 [ext_resource type="Resource" uid="uid://85o874julued" path="res://resources/enemies/skeleton_armored.tres" id="7_lv4so"]
 [ext_resource type="Texture2D" uid="uid://m73e6s3aiuxw" path="res://assets/backgrounds/forest_bg2.png" id="7_mpb26"]
 [ext_resource type="Texture2D" uid="uid://dt7bq3lpvsvr5" path="res://assets/ui/health_ico.png" id="8_y4f6p"]
+[ext_resource type="Resource" uid="uid://d0xgphe5ad7f5" path="res://resources/enemies/skeleton_greatsword.tres" id="10_y1k5m"]
+[ext_resource type="Resource" uid="uid://hl3qgdaauatm" path="res://resources/enemies/werewolf.tres" id="11_1w6ws"]
+[ext_resource type="Resource" uid="uid://b1ru2d8ng8rtb" path="res://resources/enemies/werebear.tres" id="12_ehbla"]
 [ext_resource type="Texture2D" uid="uid://ei8q3r2qgiqn" path="res://assets/sprites/player/Knight_heal.png" id="14_fhv2j"]
 [ext_resource type="FontFile" uid="uid://bawu5pkyjhc3a" path="res://assets/fonts/BoldPixels.ttf" id="15_1m01a"]
 [ext_resource type="Texture2D" uid="uid://fp5l08johdes" path="res://assets/sprites/player/Knight-Attack01.png" id="15_e50ek"]
@@ -67,11 +73,6 @@
 [ext_resource type="FontFile" uid="uid://b75jj2mkcohfm" path="res://assets/fonts/Perpetua-Regular.otf" id="66_y4f6p"]
 [ext_resource type="Texture2D" uid="uid://bb460i04o1a08" path="res://assets/ui/Default/Border/panel-border-009.png" id="67_8tiue"]
 [ext_resource type="Texture2D" uid="uid://7u5u1ec233bi" path="res://assets/ui/Default/Transparent border/panel-transparent-border-009.png" id="68_uhy05"]
-
-[sub_resource type="Resource" id="Resource_lv4so"]
-script = ExtResource("2_yahae")
-name = "orc_elite"
-metadata/_custom_type_script = "uid://dvndcxk4aetrq"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a12nh"]
 bg_color = Color(0, 0, 0, 1)
@@ -2562,7 +2563,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_th188")
-enemy_pool = Array[ExtResource("2_yahae")]([ExtResource("2_lpir7"), SubResource("Resource_lv4so"), ExtResource("5_kl6ie"), ExtResource("6_1m01a"), ExtResource("7_lv4so")])
+enemy_pool = Array[ExtResource("2_yahae")]([ExtResource("2_lpir7"), ExtResource("4_b446w"), ExtResource("6_1m01a"), ExtResource("6_nha6o"), ExtResource("7_a6jpw"), ExtResource("5_kl6ie"), ExtResource("7_lv4so"), ExtResource("10_y1k5m"), ExtResource("11_1w6ws"), ExtResource("12_ehbla")])
 enemy = ExtResource("2_lpir7")
 
 [node name="Background" type="TextureRect" parent="." unique_id=995061981]
@@ -2570,6 +2571,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_mpb26")
@@ -2693,8 +2695,8 @@ theme_override_fonts/font = ExtResource("66_y4f6p")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/background = SubResource("StyleBoxFlat_a12nh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lpir7")
-max_value = 20.0
-value = 20.0
+max_value = 10.0
+value = 10.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="EnemyContainer/EnemyHealthBar" unique_id=1994006722]
@@ -2716,7 +2718,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 5
 theme_override_fonts/font = ExtResource("66_y4f6p")
 theme_override_font_sizes/font_size = 30
-text = "HP: 20/20"
+text = "HP: 10/10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2726,7 +2728,7 @@ position = Vector2(124, 70)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_go4uh")
 animation = &"slime"
-frame_progress = 0.7444417
+frame_progress = 0.09252824
 flip_h = true
 
 [node name="EnemyAnimations" type="AnimationPlayer" parent="EnemyContainer/Enemy" unique_id=518054040]
