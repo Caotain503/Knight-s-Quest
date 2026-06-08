@@ -3,7 +3,7 @@ extends Node
 # Oyuncu durumu
 var player_hp: int = 100
 var player_max_hp: int = 100
-var player_atk: int = 5
+var player_atk: int = 15
 var player_def: int = 5
 var player_gold: int = 0
 

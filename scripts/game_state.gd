@@ -4,7 +4,7 @@ signal inventory_changed
 
 var current_health: int = 30
 var max_health = 30
-var damage = 20
+var damage = 5
 var coins: int = 0
 
 var potion_count:int=0
